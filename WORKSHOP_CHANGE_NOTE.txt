@@ -1,0 +1,74 @@
+[b]Version 0.34.1[/b]
+
+[h2]Power integration fix[/h2]
+[list]
+[*]Uses the current B47ANCEDPower API for pump power, fluid transfers, purification and heating, with legacy powerWorks fallback.
+[*]Uses Power-owned APIs for battery fixtures and verifies all 51 host integration tests without a synthetic legacy alias.
+[*]Preserves Waterworks and Power save keys, item types, authority and transaction ownership.
+[*]SP and dedicated multiplayer NOT TESTED; stable-release G8 remains BLOCKED.
+[/list]
+
+[b]Version 0.34.0[/b]
+
+[h2]B47ANCE’d Waterworks[/h2]
+[list]
+[*]Renames the project and Mod ID to B47ANCEDWaterworks.
+[*]Updates metadata, Workshop text, sandbox page and window titles.
+[*]Preserves established save keys, item types, sandbox settings and waterWorks integration APIs.
+[*]Update enabled-mod lists and dependencies; do not enable both identities together.
+[*]SP and dedicated multiplayer NOT TESTED; stable release remains blocked.
+[/list]
+
+[b]Version 0.33.1[/b]
+
+[h2]Plumbing conformance evidence[/h2]
+[list]
+[*]Requires every foreign-provider registration fixture set to include at least one verified positive and one verified negative object.
+[*]Prevents a classifier from passing conformance without demonstrating its exclusion boundary.
+[/list]
+
+[b]Previous 0.33.0 changes[/b]
+
+[h2]Recoverable physical filter transactions[/h2]
+[list]
+[*]Adds bounded authority-owned reservation and verified capacity commits for provider-owned filter media.
+[*]Rejects changed stage state and operation-ID collisions without consuming capacity.
+[*]Rolls back clean partial chains and preserves uncertain mutations for explicit recovery resolution.
+[*]Adds no guessed filter media, recipes, balance values, or automatic world-object discovery.
+[/list]
+
+[b]Previous 0.32.0 changes[/b]
+
+[h2]Reserved fluid drains[/h2]
+[list]
+[*]Added replay-safe begin, commit, rollback, and inspection operations for exact fluid amounts.
+[*]Reserved containers reject competing transfer, treatment, and direct quality changes.
+[*]Commit verifies amount and quality; rollback restores and verifies the exact prior amount.
+[*]Interrupted or changed reservations remain marked for inspection.
+[/list]
+
+[b]Version 0.31.0[/b]
+
+[h2]Foreign plumbing conformance[/h2]
+[list]
+[*]Added a bounded clean-room conformance harness for explicit source, sink, storage, fixture, valve, pump, collector, treatment, filter, meter, and junction adapters.
+[*]Requires stable identity, server authority, role-appropriate declared state, positive and negative fixtures, and explicit claim/detach/decommission lifecycle semantics before registration.
+[*]Malformed, broad-claiming, unstable, or incomplete adapters fail closed without entering the canonical registry.
+[*]No third-party adapters, source code, balance values, or automatic sprite scans were added.
+[/list]
+
+[b]Version 0.30.2[/b]
+
+[h2]Added[/h2]
+[list]
+[*]Corrected successful network-command results so they no longer carry failure reasons.
+[*]Corrected successful sampling results so they return reports without failure text.
+[*]Corrected known filter lookups so their error return is nil while preserving explicit unknown-definition errors.
+[*]Added focused regressions for all three success/error contracts.
+[/list]
+
+[h2]Roadmap[/h2]
+[list]
+[*]Add recoverable physical filter commits, housings, replaceable media, maintenance actions, and verified balance values using the filtration contract.
+[*]Complete save migration, server administration, stress, hosted, and dedicated-server validation.
+[/list]

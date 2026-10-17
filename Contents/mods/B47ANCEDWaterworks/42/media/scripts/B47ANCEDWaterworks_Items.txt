@@ -1,0 +1,162 @@
+module waterWorks
+{
+    imports { Base }
+
+    item PortableTransferPump
+    {
+        DisplayName = Portable Transfer Pump,
+        DisplayCategory = Plumbing,
+        ItemType = base:normal,
+        Weight = 4.0,
+        Icon = TirePump,
+        WorldStaticModel = TirePump,
+        ConditionMax = 100,
+        ConditionLowerChanceOneIn = 80,
+        Tags = waterWorksPump;base:repairwithtape;base:repairwithglue;base:hasmetal,
+    }
+
+    item ElectricWaterPurifier
+    {
+        DisplayName = Electric Water Purifier,
+        DisplayCategory = Plumbing,
+        ItemType = base:normal,
+        Weight = 5.0,
+        Icon = TirePump,
+        WorldStaticModel = TirePump,
+        ConditionMax = 100,
+        ConditionLowerChanceOneIn = 100,
+        Tags = waterWorksTreatment;base:repairwithtape;base:repairwithglue;base:hasmetal,
+    }
+
+    item InfrastructurePatchKit
+    {
+        DisplayName = Water Infrastructure Patch Kit,
+        DisplayCategory = Plumbing,
+        ItemType = base:normal,
+        Weight = 0.8,
+        Icon = DuctTape,
+        Tags = waterWorksRepair,
+    }
+
+    item InlineShutoffValve
+    {
+        DisplayName = Inline Water Shutoff Valve,
+        DisplayCategory = Plumbing,
+        ItemType = base:normal,
+        Weight = 1.2,
+        Icon = PipeWrench,
+        WorldStaticModel = PipeWrench,
+        ConditionMax = 100,
+        ConditionLowerChanceOneIn = 120,
+        Tags = waterWorksValve;base:repairwithtape;base:repairwithglue;base:hasmetal,
+    }
+
+    item WaterTestKit
+    {
+        DisplayName = Water Test Kit,
+        DisplayCategory = Water,
+        ItemType = base:drainable,
+        Weight = 0.5,
+        Icon = FirstAidKit,
+        UseDelta = 0.1,
+        UseWhileEquipped = false,
+        Tags = waterWorksSampling,
+    }
+
+    craftRecipe AssemblePortableTransferPump
+    {
+        time = 500,
+        timedAction = MakingElectrical,
+        Tags = AnySurfaceCraft,
+        category = Electrical,
+        SkillRequired = Electricity:2;Mechanics:2,
+        xpAward = Electricity:12;Mechanics:12,
+        inputs
+        {
+            item 1 [Base.EngineParts],
+            item 2 [Base.RubberHose],
+            item 1 [Base.MetalPipe],
+            item 2 [Base.SmallSheetMetal],
+            item 2 [Base.ElectricWire],
+            item 4 [Base.ElectronicsScrap],
+            item 2 [Base.DuctTape],
+            item 1 tags[base:screwdriver] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 1 [Base.PipeWrench] mode:keep,
+        }
+        outputs
+        {
+            item 1 waterWorks.PortableTransferPump,
+        }
+    }
+
+    craftRecipe AssembleElectricWaterPurifier
+    {
+        time = 600,
+        timedAction = MakingElectrical,
+        Tags = AnySurfaceCraft,
+        category = Electrical,
+        SkillRequired = Electricity:3;MetalWelding:2,
+        xpAward = Electricity:15;MetalWelding:12,
+        inputs
+        {
+            item 1 [Base.MetalPipe],
+            item 3 [Base.SmallSheetMetal],
+            item 3 [Base.ElectricWire],
+            item 6 [Base.ElectronicsScrap],
+            item 2 [Base.RubberHose],
+            item 2 [Base.DuctTape],
+            item 1 tags[base:screwdriver] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 1 [Base.PipeWrench] mode:keep,
+        }
+        outputs
+        {
+            item 1 waterWorks.ElectricWaterPurifier,
+        }
+    }
+
+    craftRecipe AssembleInfrastructurePatchKit
+    {
+        time = 180,
+        timedAction = Making,
+        Tags = AnySurfaceCraft,
+        category = Maintenance,
+        SkillRequired = Maintenance:1,
+        xpAward = Maintenance:5,
+        inputs
+        {
+            item 1 [Base.SmallSheetMetal],
+            item 1 [Base.RubberHose],
+            item 2 [Base.DuctTape],
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+        }
+        outputs
+        {
+            item 1 waterWorks.InfrastructurePatchKit,
+        }
+    }
+
+    craftRecipe AssembleInlineShutoffValve
+    {
+        time = 300,
+        timedAction = Making,
+        Tags = AnySurfaceCraft,
+        category = Maintenance,
+        SkillRequired = Maintenance:2;MetalWelding:1,
+        xpAward = Maintenance:8;MetalWelding:5,
+        inputs
+        {
+            item 2 [Base.MetalPipe],
+            item 2 [Base.SmallSheetMetal],
+            item 1 [Base.RubberHose],
+            item 1 [Base.DuctTape],
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 1 [Base.PipeWrench] mode:keep,
+        }
+        outputs
+        {
+            item 1 waterWorks.InlineShutoffValve,
+        }
+    }
+}
