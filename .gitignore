@@ -1,0 +1,23 @@
+# Local links/configuration, host caches and historical generated output
+.agents/
+.codex/
+__pycache__/
+*.pyc
+.venv/
+dist/
+.steamcmd-last-upload.sha256
+
+# Private/local diagnostics and developer settings
+.env
+.env.*
+!.env.example
+local.settings.json
+*.private.json
+*.log
+console.txt
+server-console*.txt
+*.pem
+*.key
+*.pfx
+*.p12
+_ci_dependencies/
