@@ -1,9 +1,12 @@
 """Offline Lua 5.1 tests; engine objects are stubs, never PZ runtime proof."""
-import argparse,json,os
+import argparse,json,os,platform
 from pathlib import Path
 from lupa.lua51 import LuaRuntime
 
 CASES={
+'sediment_housing':[],
+'sediment_ui':[],
+'sediment_commands':[],
 'identity':[],
 'api':['API'],
 'command_client':['Commands','client/CommandClient'],
@@ -87,7 +90,7 @@ def main():
         vm.globals().arg=vm.table_from({i+1:resolve(n).as_posix()for i,n in enumerate(entries)})
         try:vm.execute('dofile(...)',(root/'tests'/('test_'+name+'.lua')).as_posix());passed.append(name)
         except Exception as exc:failed[name]=str(exc)
-    report={'environment':'offline Windows; Lua 5.1 via lupa; native objects stubbed','version':(root/'VERSION').read_text(encoding='utf-8').strip(),'passed':passed,'failed':failed,'skipped':skipped,'syntax_files':len(syntax)}
+    report={'environment':f'offline {platform.system()}; Lua 5.1 via lupa; native objects stubbed','version':(root/'VERSION').read_text(encoding='utf-8').strip(),'passed':passed,'failed':failed,'skipped':skipped,'syntax_files':len(syntax)}
     if args.report:args.report.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     print(f'Lua 5.1: {len(passed)} PASS, {len(failed)} FAIL, {len(skipped)} optional Power tests SKIPPED; {len(syntax)} syntax files')
     for name,error in failed.items():print(name+': '+error)

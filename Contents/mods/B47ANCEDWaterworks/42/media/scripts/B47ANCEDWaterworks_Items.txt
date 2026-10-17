@@ -159,4 +159,56 @@ module waterWorks
             item 1 waterWorks.InlineShutoffValve,
         }
     }
+    item SedimentFilterHousing
+    {
+        DisplayName = Sediment Filter Housing,
+        DisplayCategory = Plumbing,
+        ItemType = base:normal,
+        Weight = 3.0,
+        Icon = TirePump,
+        WorldStaticModel = TirePump,
+    }
+    item SedimentFilterMedia
+    {
+        DisplayName = Sediment Filter Cartridge,
+        DisplayCategory = Plumbing,
+        ItemType = base:normal,
+        Weight = 1.0,
+        Icon = Sandbag,
+        WorldStaticModel = SandBag,
+    }
+    craftRecipe AssembleSedimentFilterHousing
+    {
+        time = 300,
+        timedAction = Making,
+        Tags = AnySurfaceCraft,
+        category = Maintenance,
+        inputs
+        {
+            item 2 [Base.SmallSheetMetal],
+            item 2 [Base.MetalPipe],
+            item 1 [Base.DuctTape],
+            item 1 [Base.PipeWrench] mode:keep,
+        }
+        outputs
+        {
+            item 1 waterWorks.SedimentFilterHousing,
+        }
+    }
+    craftRecipe AssembleSedimentFilterMedia
+    {
+        time = 180,
+        timedAction = Making,
+        Tags = AnySurfaceCraft,
+        category = Maintenance,
+        inputs
+        {
+            item 1 [Base.Sandbag] flags[ItemCount;IsFull] mode:destroy,
+            item 1 [Base.Sheet],
+        }
+        outputs
+        {
+            item 1 waterWorks.SedimentFilterMedia,
+        }
+    }
 }

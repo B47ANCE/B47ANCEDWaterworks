@@ -44,5 +44,14 @@ assert(resolved and resolvedStatus=="committed"and Transactions.inspect(store,"f
 assert(not Transactions.resolveRecovery(store,"filter:uncertain","restore-before"),"resolved records cannot be changed again")
 local future={[Transactions.STORE_KEY]={schemaVersion=2,records={},order={}}}
 assert(not Transactions.reserve(future,request),"future transaction stores must fail closed without replacement")
+local compensation={schemaVersion=1,operationId="filter:compensate",amount=2,inputQuality={},stages={
+    {providerId="test.media",stageId="c",filterId="test.sediment"}}}
+assert(Transactions.reserve(store,compensation));assert(Transactions.commit(store,compensation.operationId))
+assert(media.c.remainingCapacity==18)
+assert(Transactions.rollback(store,compensation.operationId)and media.c.remainingCapacity==20)
+assert(Transactions.rollback(store,compensation.operationId)and media.c.remainingCapacity==20,"rollback replay must not refill twice")
+compensation.operationId="filter:tamper";assert(Transactions.reserve(store,compensation));assert(Transactions.commit(store,compensation.operationId))
+media.c.remainingCapacity=17
+assert(not Transactions.rollback(store,compensation.operationId)and media.c.remainingCapacity==17,"changed media must not receive unproven compensation")
 isClient=function()return true end;assert(not Transactions.reserve({},request),"client must not own filter capacity")
 print("B47ANCEDWaterworks recoverable filter transaction checks passed")

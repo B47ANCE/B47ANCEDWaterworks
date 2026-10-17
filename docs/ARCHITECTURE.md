@@ -321,7 +321,7 @@ restriction and replaceable-media semantics. Providers retain exact efficiency
 and capacity-consumption policy through an isolated evaluator; B47ANCE’d Waterworks
 normalizes its output and rejects undeclared quality mutation, contaminant
 increases, capacity overdraft, and invalid flow. Evaluation is pure planning and
-does not mutate water, media, or network state. A future physical filter device
+does not mutate water, media, or network state. A physical filter device
 must compose this plan with existing authoritative treatment, condition, and
 flow transactions.
 
@@ -331,7 +331,7 @@ providers may use the documented filter role with normalized filter identity,
 capacity, condition, replaceable-media, flow-multiplier, and exhaustion fields.
 evaluateFilterChain applies no more than sixteen provider-owned definitions in
 declared order and returns protected per-stage plans. It remains deliberately
-non-mutating: physical devices must commit water and media state through a later
+non-mutating: physical devices must commit water and media state through an authoritative
 recoverable transaction rather than treating a successful preview as authority.
 
 The first concrete treatment workflow is implemented in 0.24.0: a craftable
@@ -409,3 +409,16 @@ existing server sandbox values, vanilla fluid synchronization, replay protection
 join/reconnect and existing persistence contracts remain unchanged. Native
 synchronization, servicing, save/reload and dedicated acceptance remain runtime
 gates. See POWER_INTEGRATION.md.
+
+## Sediment batch housing (0.35.0)
+
+FirstPartySediment owns a schema-1 additive server ledger, immutable item token
+and read-only world projection. Client timed actions submit strict intent through
+the existing rate/replay handler. The server validates loaded identity, living
+actor reach/floor, owned media ID and expected generation before native removal.
+Whole-container sediment treatment consumes physical capacity first and uses a
+private permit into the quality transaction. Verified unchanged water permits
+exact media compensation; uncertain results preserve quarantine across reload.
+Flow rejects batchFilter nodes except the source of the explicit batch path.
+No automatic inline filtration or new Power dependency is introduced. See
+SEDIMENT_FILTER.md for boundaries, settings and runtime gates.

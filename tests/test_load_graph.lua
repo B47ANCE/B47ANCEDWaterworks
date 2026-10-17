@@ -3,7 +3,7 @@ local clientModules={
     "waterWorks/Infrastructure","waterWorks/VanillaProviders","waterWorks/Connections",
     "waterWorks/Hydraulics","waterWorks/Flow","waterWorks/PumpPower",
     "waterWorks/FirstPartyPumps","waterWorks/TreatmentDevices","waterWorks/FirstPartyTreatment",
-    "waterWorks/FirstPartyValves","waterWorks/DemandScheduler","waterWorks/Condition",
+    "waterWorks/FirstPartyValves","waterWorks/FirstPartySediment","waterWorks/DemandScheduler","waterWorks/Condition",
     "waterWorks/Maintenance","waterWorks/Thermal","waterWorks/Commands",
     "waterWorks/Diagnostics","waterWorks/Sampling","waterWorks/CommandClient",
     "waterWorks/SamplingClient","waterWorks/NetworkInspector","waterWorks/DemandDialog",
@@ -12,6 +12,7 @@ local clientModules={
     "waterWorks/FixtureContextMenu","waterWorks/MaintenanceAction",
     "waterWorks/MaintenanceContextMenu","waterWorks/SamplingAction",
     "waterWorks/SamplingContextMenu","waterWorks/NetworkContextMenu",
+    "waterWorks/SedimentAction","waterWorks/SedimentContextMenu",
 }
 
 local serverModules={
@@ -19,7 +20,7 @@ local serverModules={
     "waterWorks/Infrastructure","waterWorks/VanillaProviders","waterWorks/Connections",
     "waterWorks/Hydraulics","waterWorks/Flow","waterWorks/PumpPower",
     "waterWorks/FirstPartyPumps","waterWorks/TreatmentDevices","waterWorks/FirstPartyTreatment",
-    "waterWorks/FirstPartyValves","waterWorks/DemandScheduler","waterWorks/Condition",
+    "waterWorks/FirstPartyValves","waterWorks/FirstPartySediment","waterWorks/DemandScheduler","waterWorks/Condition",
     "waterWorks/Maintenance","waterWorks/Thermal","waterWorks/Commands",
     "waterWorks/Diagnostics","waterWorks/Sampling","waterWorks/SamplingDistribution",
     "waterWorks/Lifecycle","waterWorks/CommandServer","waterWorks/SamplingServer",

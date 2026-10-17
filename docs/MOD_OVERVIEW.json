@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "id": "water",
+  "name": "Waterworks",
+  "version": "0.35.0",
+  "reviewed": true,
+  "source_digest": "46a234f9437972da82bdc9a1f4574e0af676ccbab2eb7485c39c048be68d21ef",
+  "features": [
+    {
+      "status": "Source",
+      "text": "Server-authoritative measured fluid transfer, multi-axis quality, treatment, bounded persistent networks, routing, scheduling, maintenance and thermal transactions."
+    },
+    {
+      "status": "Source",
+      "text": "Craftable sediment batch housing and replaceable sand/cloth cartridges; server-owned capacity/generation, explicit connected-container filtering, conservative recovery and four sandbox options."
+    },
+    {
+      "status": "Foundation",
+      "text": "Generic provider APIs, filter chains, foreign-plumbing conformance and exact drain reservations support consumers; native integration evidence remains limited."
+    },
+    {
+      "status": "Planned",
+      "text": "Additional filter media, automatic inline filtration, measured balance and authenticated administration/migration workflows."
+    },
+    {
+      "status": "Blocked",
+      "text": "Dedicated G7 and stable-release G8 await native two-client persistence, synchronization and restart evidence."
+    }
+  ],
+  "limits": "Offline Lua 5.1: 54 PASS with pinned Power; 48 PASS / 6 optional skips standalone. Native crafting, SP and dedicated MP NOT TESTED. Pending housing recovery has no automatic reset/resolution.",
+  "evidence": [
+    "README.md",
+    "docs/SEDIMENT_FILTER.md",
+    "docs/VALIDATION.md",
+    "docs/POWER_INTEGRATION.md",
+    "Contents/mods/B47ANCEDWaterworks/42/media/lua/shared/waterWorks/FirstPartySediment.lua"
+  ],
+  "relations": [
+    {
+      "target": "power",
+      "kind": "Optional",
+      "text": "Powered pumps, purifier and heating consume current B47ANCEDPower API with legacy powerWorks fallback; sediment housing requires no power. Offline integration only."
+    }
+  ]
+}

@@ -21,7 +21,7 @@ local function resolve(store,nodeId)
     if not state then return nil,stateErr end
     return {index=index,network=network,node=node,object=object,state=state}
 end
-local function traversable(store,nodeId,cache,allowFrozenNodeId)
+local function traversable(store,nodeId,cache,allowFrozenNodeId,allowBatchSourceId)
     local value=cache[nodeId]
     if value~=nil then return value end
     local state=Infrastructure.inspectNode(store,nodeId)
@@ -29,11 +29,12 @@ local function traversable(store,nodeId,cache,allowFrozenNodeId)
     value=state~=nil and (nodeId==allowFrozenNodeId or not(thermal and thermal.isFrozen(store,nodeId)))
         and state.available~=false and state.enabled~=false
         and not (state.kind=="valve" and state.open==false)
+        and not (state.kind=="filter" and state.batchFilter==true and nodeId~=allowBatchSourceId)
         and not (state.kind=="pump" and state.powered~=true)
     cache[nodeId]=value
     return value
 end
-local function findPath(store,network,startId,targetId,allowFrozenNodeId)
+local function findPath(store,network,startId,targetId,allowFrozenNodeId,allowBatchSourceId)
     local queue={startId}; local head=1; local previous={[startId]=false}; local inspected=0; local cache={}
     while head<=#queue and inspected<Flow.MAX_PATH_NODES do
         local id=queue[head]; head=head+1; inspected=inspected+1
@@ -42,9 +43,9 @@ local function findPath(store,network,startId,targetId,allowFrozenNodeId)
             while cursor do table.insert(path,1,cursor); cursor=previous[cursor] end
             return path,inspected
         end
-        if traversable(store,id,cache,allowFrozenNodeId) then
+        if traversable(store,id,cache,allowFrozenNodeId,allowBatchSourceId) then
             for neighbor in pairs(network.adjacency[id] or {}) do
-                if previous[neighbor]==nil and traversable(store,neighbor,cache,allowFrozenNodeId) then
+                if previous[neighbor]==nil and traversable(store,neighbor,cache,allowFrozenNodeId,allowBatchSourceId) then
                     previous[neighbor]=id; queue[#queue+1]=neighbor
                 end
             end
@@ -60,7 +61,7 @@ function Flow.findOpenPath(store,startId,targetId,options)
     if source.network~=target.network or source.index.networkId~=target.index.networkId then return nil,"nodes belong to different networks" end
     if source.node.channel~=target.node.channel then return nil,"channel mismatch" end
     local allowed=options.allowFrozenTarget==true and targetId or nil
-    local path,inspected,err=findPath(store,source.network,startId,targetId,allowed)
+    local path,inspected,err=findPath(store,source.network,startId,targetId,allowed,options.allowBatchFilterSource==true and startId or nil)
     if not path then return nil,err end
     return {path=path,pathNodesInspected=inspected,networkId=source.index.networkId,source=source,target=target}
 end

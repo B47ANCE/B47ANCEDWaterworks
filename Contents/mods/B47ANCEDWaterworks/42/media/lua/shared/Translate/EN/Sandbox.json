@@ -13,5 +13,13 @@
   "Sandbox_waterWorks_SamplingTimeMultiplier": "Water-sampling time multiplier",
   "Sandbox_waterWorks_SamplingTimeMultiplier_tooltip": "Multiplies the duration of visual inspection and test-kit sampling actions.",
   "Sandbox_waterWorks_WaterTestKitLootChance": "Water test kit loot chance",
-  "Sandbox_waterWorks_WaterTestKitLootChance_tooltip": "Independent chance for an eligible laboratory, medical, pharmacy, hospital, or camping container to receive a Water Test Kit."
+  "Sandbox_waterWorks_WaterTestKitLootChance_tooltip": "Independent chance for an eligible laboratory, medical, pharmacy, hospital, or camping container to receive a Water Test Kit.",
+  "Sandbox_waterWorks_EnableSedimentFilters": "Enable sediment filter housings",
+  "Sandbox_waterWorks_EnableSedimentFilters_tooltip": "Enables housing registration, cartridge replacement and sediment batch filtration. Existing housings and stored capacity are preserved when disabled. Does not remove biological, chemical or salt hazards.",
+  "Sandbox_waterWorks_SedimentMediaCapacity": "Sediment cartridge capacity (water units)",
+  "Sandbox_waterWorks_SedimentMediaCapacity_tooltip": "Total water units a newly installed cartridge can treat (1-10000). Existing installed capacity is preserved. A batch must fit completely in the remaining capacity.",
+  "Sandbox_waterWorks_SedimentRemovalFraction": "Sediment removal fraction per batch",
+  "Sandbox_waterWorks_SedimentRemovalFraction_tooltip": "Fraction of particulate contamination and turbidity removed by each batch (0-1). Biology, chemicals and salinity remain unchanged. Zero prevents filtration without consuming media.",
+  "Sandbox_waterWorks_SedimentActionTimeMultiplier": "Sediment interaction time multiplier",
+  "Sandbox_waterWorks_SedimentActionTimeMultiplier_tooltip": "Multiplier for local installation/replacement and batch-action animations (0.1-10). Server still validates every intent, cartridge and water operation. Timing is presentation, not an anti-cheat permission."
 }

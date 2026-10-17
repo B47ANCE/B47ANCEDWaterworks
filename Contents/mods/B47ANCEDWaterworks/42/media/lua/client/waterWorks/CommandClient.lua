@@ -1,6 +1,7 @@
 local waterWorks=rawget(_G,"waterWorks") or require "waterWorks/API"
 local Commands=require "waterWorks/Commands"
 local Client={Results={},Deltas={},Snapshots={},PendingSnapshots={},MAX_HISTORY=64,MAX_SNAPSHOT_PAGES=1024}
+Client.PendingSediment={};Client.SedimentResults={}
 local counter=0
 local function append(list,value)
     list[#list+1]=value; while #list>Client.MAX_HISTORY do table.remove(list,1) end
@@ -172,9 +173,35 @@ function Client.cancelDemand(player,sourceId,targetId)
     if not ok then return false,err end
     return true,payload.requestId
 end
+function Client.requestSediment(player,operation,nodeId,generation,extra)
+    if not player or type(sendClientCommand)~="function"or type(getTimestampMs)~="function"then return false,"sediment command unavailable"end
+    local now=getTimestampMs()
+    if type(now)~="number"or now~=now or math.abs(now)==math.huge then return false,"sediment clock unavailable"end
+    counter=counter+1
+    local payload={requestId="sediment:"..tostring(now)..":"..tostring(counter),
+        operation=operation,nodeId=nodeId,expectedGeneration=generation}
+    if type(extra)=="table"then
+        for _,key in ipairs({"targetId","mediaId","itemId","x","y","z"})do payload[key]=extra[key]end
+    end
+    local pendingCount=0;for id,pending in pairs(Client.PendingSediment)do
+        if now-pending.at>30000 then Client.PendingSediment[id]=nil else pendingCount=pendingCount+1 end
+    end
+    if pendingCount>=Client.MAX_HISTORY then return false,"sediment request limit reached"end
+    Client.PendingSediment[payload.requestId]={nodeId=nodeId,at=now}
+    local ok,err=pcall(sendClientCommand,player,Commands.MODULE,Commands.SEDIMENT,payload)
+    if not ok then Client.PendingSediment[payload.requestId]=nil end
+    return ok,ok and payload.requestId or err
+end
 function Client.receive(module,command,args)
     if module~=Commands.MODULE or type(args)~="table" then return false end
-    if command==Commands.RESULT then append(Client.Results,args); return true end
+    if command==Commands.RESULT then
+        local pending=Client.PendingSediment[args.requestId]
+        if pending then
+            Client.PendingSediment[args.requestId]=nil
+            append(Client.SedimentResults,{nodeId=pending.nodeId or args.proposal and args.proposal.nodeId,ok=args.ok==true})
+        end
+        append(Client.Results,args); return true
+    end
     if command==Commands.DELTA then append(Client.Deltas,args); return true end
     if command==Commands.SNAPSHOT then
         local current=Client.Snapshots[args.networkId]
