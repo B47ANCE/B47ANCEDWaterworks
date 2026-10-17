@@ -1,0 +1,17 @@
+{
+  "Sandbox_waterWorks": "B47ANCE’d Waterworks",
+  "Sandbox_waterWorks_EnableNetworkContextActions": "Enable water-network context actions",
+  "Sandbox_waterWorks_EnableNetworkContextActions_tooltip": "Shows player-facing water-network selection, connection, transfer, treatment, and related context actions. Disabling it does not delete networks or stop existing schedules.",
+  "Sandbox_waterWorks_EnableNetworkInspection": "Enable water-network inspection",
+  "Sandbox_waterWorks_EnableNetworkInspection_tooltip": "Shows the read-only Inspect Water Network action for registered endpoints.",
+  "Sandbox_waterWorks_EnableCustomTransferAmounts": "Enable custom transfer amounts",
+  "Sandbox_waterWorks_EnableCustomTransferAmounts_tooltip": "Adds the custom decimal amount entry alongside the bounded transfer presets.",
+  "Sandbox_waterWorks_EnableScheduledTransfers": "Enable scheduled-transfer controls",
+  "Sandbox_waterWorks_EnableScheduledTransfers_tooltip": "Shows controls for creating, updating, and cancelling recurring transfers. Disabling this UI does not cancel schedules that already exist.",
+  "Sandbox_waterWorks_EnableWaterSampling": "Enable water inspection and testing",
+  "Sandbox_waterWorks_EnableWaterSampling_tooltip": "Allows visual water inspection and reagent-based quality testing. Disabling it removes the world context actions and test-kit loot injection.",
+  "Sandbox_waterWorks_SamplingTimeMultiplier": "Water-sampling time multiplier",
+  "Sandbox_waterWorks_SamplingTimeMultiplier_tooltip": "Multiplies the duration of visual inspection and test-kit sampling actions.",
+  "Sandbox_waterWorks_WaterTestKitLootChance": "Water test kit loot chance",
+  "Sandbox_waterWorks_WaterTestKitLootChance_tooltip": "Independent chance for an eligible laboratory, medical, pharmacy, hospital, or camping container to receive a Water Test Kit."
+}

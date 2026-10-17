@@ -1,0 +1,8 @@
+name=B47ANCE’d Waterworks
+id=B47ANCEDWaterworks
+description=Fluid infrastructure with quality-aware transfers, persistent networks, pumps, treatment, repairs, valves, explicit vanilla fixtures, and tiered water testing.
+poster=thumbnail.png
+icon=icon.png
+author=B47ANCE
+modversion=0.34.1
+versionMin=42.20.3

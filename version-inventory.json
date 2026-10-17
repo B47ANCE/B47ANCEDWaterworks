@@ -1,0 +1,43 @@
+{
+  "canonical": "VERSION",
+  "source_root": "Contents/mods/B47ANCEDWaterworks",
+  "mod_id": "B47ANCEDWaterworks",
+  "display_name": "B47ANCE’d Waterworks",
+  "workshop_id": "3788594390",
+  "mirrors": {
+    "Contents/mods/B47ANCEDWaterworks/42/mod.info": "(?m)^modversion=(\\S+)$",
+    "Contents/mods/B47ANCEDWaterworks/info.txt": "(?m)^Version: (\\S+)$",
+    "Contents/mods/B47ANCEDWaterworks/42/media/lua/shared/waterWorks/API.lua": "waterWorks.VERSION=\"([^\\\"]+)\"",
+    "README.md": "- Version: (\\S+) foundation",
+    "docs/MASTER_ROADMAP.md": "Canonical version: ([0-9]+\\.[0-9]+\\.[0-9]+)",
+    "WORKSHOP_DESCRIPTION.txt": "\\[b\\]Mod Version: ([^\\[]+)\\[/b\\]",
+    "workshop.txt": "description=\\[b\\]Mod Version: ([^\\[]+)\\[/b\\]",
+    "WORKSHOP_CHANGE_NOTE.txt": "\\[b\\]Version ([^\\[]+)\\[/b\\]",
+    "CHANGELOG.md": "## ([0-9]+\\.[0-9]+\\.[0-9]+) [\\-\\u2014]",
+    "docs/VALIDATION.md": "Current version: ([0-9]+\\.[0-9]+\\.[0-9]+)",
+    "docs/TESTING.md": "Current version: ([0-9]+\\.[0-9]+\\.[0-9]+)",
+    "tests/test_identity.lua": "branded.VERSION==\"([^\"]+)\"",
+    "docs/POWER_INTEGRATION.md": "Current version: ([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "historical": [
+    "dist/",
+    "SHA256SUMS.txt",
+    ".steamcmd-last-upload.sha256",
+    "docs/B42_API_RESEARCH_HANDOFF.md",
+    "docs/CLEAN_ROOM_RESEARCH.md",
+    "version-specific evidence in docs/ARCHITECTURE.md and docs/TESTING.md",
+    "docs/RENAMING.md (0.34.0 identity compatibility record)",
+    "docs/rename-0.34.0-provenance.json",
+    "docs/validation/0.34.0-rename.md",
+    "docs/validation/0.34.1-local-power.md"
+  ],
+  "local_only_historical": [
+    "dist/",
+    ".steamcmd-last-upload.sha256"
+  ],
+  "generated_outputs": [
+    "dist/ (historical local packages, excluded from Git)",
+    "__pycache__/ (local test cache)",
+    "_ci_dependencies/ (CI-only dependency checkout)"
+  ]
+}

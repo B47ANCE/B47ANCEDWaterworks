@@ -1,0 +1,20 @@
+{
+  "baseline_version": "0.33.1",
+  "target_version": "0.34.0",
+  "baseline_source_file_count": 2056,
+  "baseline_tree_sha256": "2354a95bd70111c22e4008494f53f49d19cac6921cb4b95a5cdb2f3b7b2d9a95",
+  "protected_files": {
+    ".steamcmd-last-upload.sha256": "477e82d284a69f58f73b315c8a5c3fc6d713d6b55998f8996f7517ce8332784d",
+    "preview.png": "6d02ebdc7f79f673cb1360c66cb27997a582d209ee63c183a95d21f37b40fba6",
+    "SHA256SUMS.txt": "a109ee86283715784a9160e37af12a3859497e17acd7cf3f973cd3535f114d1f",
+    "WORKSHOP_ID.txt": "8ae5a05532d59ead3cbaeed531c7dcfe223cf0551bce1fce8f1b29cfe6b1c797",
+    "docs/B42_API_RESEARCH_HANDOFF.md": "ac92f8affa57b70e26dbe75165cce5ad1810b59ac2de57e77663b0a76f0f9fb8",
+    "docs/CLEAN_ROOM_RESEARCH.md": "f7eba6e447271c379377e30c357e1d9465f9b2468e33e18cd6985b5979896ad6",
+    "Contents/mods/B47ANCEDWaterworks/thumbnail.png": "6d02ebdc7f79f673cb1360c66cb27997a582d209ee63c183a95d21f37b40fba6",
+    "Contents/mods/B47ANCEDWaterworks/42/icon.png": "99b02a0137a34988b778a0751fa551b61eef990423935747871b154d27d9010e"
+  },
+  "historical_dist_file_count": 1938,
+  "historical_dist_tree_sha256": "2f34a5e3c18bac95f29b09497d804e7acad64c4ecc0cd060ba8bc9d23cdadbb1",
+  "previous_changenote_bytes": 2574,
+  "previous_changenote_sha256": "9f685abd89f640d1c6dd84be826a276fb3b72ee53153fe40c20782205869d063"
+}
