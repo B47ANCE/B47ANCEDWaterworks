@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Power integration
 
-Current version: 0.34.1.
+Current version: 0.35.0.
 
 [VERIFIED, source] Current Power API: `B47ANCEDPower`, with `powerWorks` used only
 when the current global is absent. Lookups are dynamic and do not force-load an
@@ -64,3 +64,10 @@ SP/hosted/dedicated NOT TESTED. G7 BLOCKED / NOT TESTED; stable-release G8 BLOCK
 No package, deploy, publish or game/server launch. The initial public source import is prepared on `feature/github-onboarding` in
 B47ANCE/B47ANCEDWaterworks; actual remote SHA and CI status are recorded by the
 GitHub PR/task. See ../GITHUB_ONBOARDING.md.
+
+## 0.35.0 continuation
+
+The sediment housing needs no electricity and changes no Power contracts. The
+current offline suite has 54 passing cases with the same Power source pin; prior
+51-case 0.34.1 results above remain historical evidence. Native SP/dedicated
+Power validation remains NOT TESTED; see VALIDATION.md for current commands.

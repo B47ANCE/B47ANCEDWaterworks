@@ -1,3 +1,14 @@
+[b]Version 0.35.0[/b]
+
+[h2]Sediment filter housing[/h2]
+[list]
+[*]Craft a housing and replaceable sand/cloth cartridges; register the placed housing, install media and batch-filter a connected water container.
+[*]Default cartridge capacity is 100 fluid units. Each batch removes 75% of sediment and turbidity; biology, chemicals and salt remain unchanged.
+[*]Server-owned media consumption, capacity, replay protection and conservative recovery. Ordinary flow cannot bypass batch filtering.
+[*]Configurable enablement, capacity, removal fraction and action time.
+[*]MP testing build - dedicated multiplayer NOT TESTED. Native crafting and SP NOT TESTED; G7 and stable-release G8 BLOCKED.
+[/list]
+
 [b]Version 0.34.1[/b]
 
 [h2]Power integration fix[/h2]

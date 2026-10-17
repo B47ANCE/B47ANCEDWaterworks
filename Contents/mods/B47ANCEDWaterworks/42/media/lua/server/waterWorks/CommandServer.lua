@@ -124,7 +124,7 @@ end
 local function method(object,name,...)
     local ok,fn=pcall(function() return object and object[name] end)
     if not ok or type(fn)~="function" then return nil end
-    local called,value=pcall(fn,object,...); return called and value or nil
+    local called,value=pcall(fn,object,...); if called then return value end;return nil
 end
 local function claimPlacedDevice(player,args,store,expectedType,label,attacher)
     local x,y,z=tonumber(args.x),tonumber(args.y),tonumber(args.z)
@@ -328,6 +328,38 @@ local function cachedMutation(player,args,operation)
     return ok,result
 end
 
+local function sedimentAction(actor,args,store)
+    if type(isClient)=="function"and isClient()==true then return false,"non-authority"end
+    if method(actor,"isDead")~=false then return false,"living actor required"end
+    local allowed={requestId=true,operation=true,nodeId=true,targetId=true,mediaId=true,expectedGeneration=true,x=true,y=true,z=true,itemId=true}
+    local count=0
+    for key in pairs(args)do count=count+1;if count>10 or not allowed[key]then return false,"unexpected sediment payload"end end
+    if not args.requestId:match("^[%w_.:%-]+$")then return false,"valid sediment request identity required"end
+    local H=require "waterWorks/FirstPartySediment"
+    if args.operation=="claim"then
+        local z=tonumber(args.z);local actorZ=coordinate(actor,"z")
+        if not z or z~=z or z==math.huge or z==-math.huge or not actorZ or math.floor(z)~=math.floor(actorZ)then return false,"housing on another floor"end
+        for _,axis in ipairs({"x","y"})do
+            local value=tonumber(args[axis]);if not value or value~=value or math.abs(value)==math.huge then return false,"invalid housing coordinates"end
+        end
+        return claimPlacedDevice(actor,args,store,H.HOUSING_TYPE,"sediment housing",function(active,object)return H.claim(active,object,actor)end)
+    end
+    if not validString(args.nodeId,Commands.MAX_NODE_ID)or type(args.expectedGeneration)~="number"
+        or args.expectedGeneration~=args.expectedGeneration or args.expectedGeneration%1~=0 then return false,"valid housing generation required"end
+    local onlineId=method(actor,"getOnlineID")
+    if type(onlineId)~="number"or onlineId~=onlineId or math.abs(onlineId)==math.huge then return false,"authoritative actor identity required"end
+    local operationId="sed:"..tostring(onlineId)..":"..args.requestId
+    if args.operation=="replace"then
+        if not validString(args.mediaId,Commands.MAX_ITEM_ID)then return false,"valid owned media id required"end
+        return H.replace(store,args.nodeId,actor,args.mediaId,operationId,args.expectedGeneration)
+    end
+    if args.operation=="filter"then
+        if not validString(args.targetId,Commands.MAX_NODE_ID)then return false,"valid water target required"end
+        return H.filter(store,args.nodeId,args.targetId,actor,operationId,args.expectedGeneration)
+    end
+    return false,"unsupported sediment operation"
+end
+
 function Server.handle(module,command,player,args)
     if module~=Commands.MODULE then return nil,"unhandled module" end
     if command==Commands.SUBSCRIBE then
@@ -361,6 +393,7 @@ function Server.handle(module,command,player,args)
         remember(player,args.requestId,result); reply(player,Commands.RESULT,result)
         return ok,result
     end
+    if command==Commands.SEDIMENT then return cachedMutation(player,args,sedimentAction)end
     if command==Commands.CLAIM_TREATMENT then return cachedMutation(player,args,claimPlacedTreatment)end
     if command==Commands.CLAIM_VALVE then return cachedMutation(player,args,claimPlacedValve)end
     if command==Commands.CLAIM_FIXTURE then return cachedMutation(player,args,claimVanillaFixture)end

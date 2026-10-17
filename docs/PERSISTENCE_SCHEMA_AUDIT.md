@@ -64,3 +64,20 @@ policy for this data.
 tests/test_persistence_contract.lua verifies current empty-store initialization and non-destructive rejection of future/malformed registry, schedule, condition, thermal, and maintenance-recovery state. Existing registry, network, scheduler, condition, thermal, transaction, lifecycle, valve, fixture, pump, purifier, and maintenance cases exercise current schema behavior.
 
 Host tests cannot certify engine serialization, save/load timing, chunk streaming, hosted multiplayer, or dedicated-server authority. Those remain in-game gates. No release-readiness claim follows from this audit.
+
+## 0.35.0 additive sediment ledger
+
+[VERIFIED, source] Registry schema remains 1. FirstPartySediment adds optional
+sedimentHousings schema 1, bounded entries/sequence, exact item identity, position,
+generation/capacity, bounded completion fingerprints and pending recovery. Missing
+state initializes only on explicit authoritative claim; malformed/future schemas
+fail closed without resetting. Item waterWorksSedimentIdentity.v1 stores schema/key;
+world waterWorksSedimentView.v1 stores only a presentation projection. Loaded
+bindings are weak and rebuilt through existing explicit lifecycle attachment.
+Replacement advances generation; relocation decommissions old topology. Pending
+install/filter operations stay blocked after reload with no automatic refund or
+housing reset API. Ledger entries are retained; rollback/downgrade is not certified.
+[TESTED, offline] Disposable deep-copied registry fixture preserves consumed media
+and quarantine after reattachment. Native item/world persistence, interrupted disk
+writes, existing real saves and dedicated restart remain [RUNTIME GATE] NOT TESTED.
+See SEDIMENT_FILTER.md for ownership and acceptance details.

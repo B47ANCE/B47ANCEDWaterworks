@@ -148,6 +148,56 @@ function Transactions.commit(store,operationId)
     return true,"committed",copy(record)
 end
 
+-- Compensation after a different authoritative domain proves it restored its prior state.
+-- Verify every stage is still at this operation's committed state before restoring capacity.
+function Transactions.rollback(store,operationId)
+    if not authority()then return false,"non-authority"end
+    local operations,err=operationStore(store,false);if not operations then return false,err end
+    local record=operations.records[operationId]
+    if not record then return false,"filter transaction unavailable"end
+    if record.status=="rolledBack"then return true,"rolledBack",copy(record)end
+    if record.status~="committed"or type(record.stages)~="table"or #record.stages>Transactions.MAX_STAGES then return false,"committed filter transaction required"end
+    local acquired={};local seen={};local count=0
+    for index,stage in pairs(record.stages)do
+        count=count+1
+        if type(index)~="number"or index%1~=0 or index<1 or index>Transactions.MAX_STAGES or count>Transactions.MAX_STAGES
+            or type(stage)~="table"or not valid(stage.providerId)or not valid(stage.stageId)or not valid(stage.filterId)
+            or type(stage.before)~="table"or type(stage.after)~="table"then return false,"malformed committed filter stages"end
+        for _,state in ipairs({stage.before,stage.after})do
+            if not finite(state.remainingCapacity)or state.remainingCapacity<0 or not finite(state.condition)
+                or state.condition<0 or state.condition>1 then return false,"malformed committed filter state"end
+        end
+    end
+    if count<1 or count~=#record.stages then return false,"malformed committed filter stages"end
+    for _,stage in ipairs(record.stages)do
+        local key=stage.providerId..":"..stage.stageId
+        if seen[key]then return false,"duplicate committed filter stage"end;seen[key]=true
+        if locks[key]then return false,"filter stage busy"end
+        local provider=providers[stage.providerId]
+        local _,state
+        if provider then _,state=current(provider,stage.stageId)end
+        if not state or state.filterId~=nil and state.filterId~=stage.filterId
+            or not close(state.remainingCapacity,stage.after.remainingCapacity)or not close(state.condition,stage.after.condition)then
+            return false,"committed filter stage changed"
+        end
+        acquired[#acquired+1]=key
+    end
+    for _,key in ipairs(acquired)do locks[key]=operationId end
+    record.status="rollingBack"
+    for index=#record.stages,1,-1 do
+        local stage=record.stages[index]
+        local ok,reason=applyStage(stage,stage.after,stage.before,operationId..":rollback")
+        if not ok then
+            record.status="recovery";record.reason=reason
+            for _,key in ipairs(acquired)do locks[key]=nil end
+            return false,"recovery",copy(record)
+        end
+    end
+    record.status="rolledBack";record.reason=nil
+    for _,key in ipairs(acquired)do locks[key]=nil end
+    return true,"rolledBack",copy(record)
+end
+
 function Transactions.cancel(store,operationId)
     if not authority()then return false,"non-authority"end
     local operations,err=operationStore(store,false);if not operations then return false,err end
@@ -195,5 +245,6 @@ waterWorks.registerFilterMediaProvider=Transactions.registerProvider
 waterWorks.reserveFilterTransaction=Transactions.reserve
 waterWorks.commitFilterTransaction=Transactions.commit
 waterWorks.cancelFilterTransaction=Transactions.cancel
+waterWorks.rollbackFilterTransaction=Transactions.rollback
 waterWorks.resolveFilterRecovery=Transactions.resolveRecovery
 return Transactions

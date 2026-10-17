@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.35.0 - 2026-10-17
+
+- Add a craftable sediment filter housing and consumable sand/cloth cartridges.
+  Timed install/replace and connected-container batch filtering submit intent to
+  the server; no client owns inventory, water quality or remaining capacity.
+- Defaults: 100 fluid units per cartridge and 75% particulate/turbidity removal
+  per batch. Biology, chemicals and salinity remain unchanged. Add four sandbox
+  controls for enablement, capacity, removal fraction and action presentation time.
+- Persist housing identity, media generation, capacity, bounded replay history
+  and interruption records. Verify media compensation only after proven unchanged
+  water; uncertain outcomes remain quarantined without an automatic reset.
+- Block ordinary routed flow through batch filters. Preserve existing item IDs,
+  optional Power integration and all existing registry schemas.
+- Offline: 54 cases pass with actual Power source; standalone 48 pass / 6 skip.
+  Native crafting, SP and dedicated multiplayer NOT TESTED; G7/stable G8 BLOCKED.
+- Adopt the reviewed feature/connection descriptor and document exact recipes,
+  source fingerprints, English fallback and remaining runtime acceptance gates.
+
 ## 0.34.1 - 2026-10-16
 
 - Fix powered pumps, treatment and heating to prefer the current B47ANCEDPower

@@ -1,4 +1,13 @@
 {
   "UI_B47ANCEDWaterworks_NetworkInspector": "B47ANCE’d Waterworks Network Inspector",
-  "UI_B47ANCEDWaterworks_WaterSample": "B47ANCE’d Waterworks Water Sample"
+  "UI_B47ANCEDWaterworks_WaterSample": "B47ANCE’d Waterworks Water Sample",
+  "UI_B47ANCEDWaterworks_SedimentRegister": "Register Sediment Filter Housing",
+  "UI_B47ANCEDWaterworks_SedimentInstall": "Install Sediment Cartridge",
+  "UI_B47ANCEDWaterworks_SedimentReplace": "Replace Sediment Cartridge (discard old media)",
+  "UI_B47ANCEDWaterworks_SedimentCapacity": "Sediment capacity: %1 / %2 water units",
+  "UI_B47ANCEDWaterworks_SedimentEmpty": "Sediment housing: no cartridge installed",
+  "UI_B47ANCEDWaterworks_SedimentRecovery": "Sediment housing: recovery inspection required",
+  "UI_B47ANCEDWaterworks_SedimentHazards": "Sediment filtration does not remove microbes, chemicals or salt.",
+  "UI_B47ANCEDWaterworks_SedimentFilter": "Filter Connected Water (Sediment Batch)",
+  "UI_B47ANCEDWaterworks_SedimentLastFailed": "Last sediment action failed: check capacity, water, route and reach."
 }

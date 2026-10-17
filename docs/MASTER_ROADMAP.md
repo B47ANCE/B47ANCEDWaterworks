@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Master Roadmap
 
-Canonical version: 0.34.1 (root `VERSION`).
+Canonical version: 0.35.0 (root `VERSION`).
 
 ## Implemented
 
@@ -18,10 +18,14 @@ Canonical version: 0.34.1 (root `VERSION`).
 - Current and legacy Power API resolution with actual-source integration tests
   covering charged devices, exact energy debit, rollback, heating and replay.
 
+- Craftable sediment batch housing, replaceable sand/cloth cartridges, timed
+  intent actions, authoritative capacity and conservative interrupted-operation
+  quarantine (0.35.0 source/offline only; native crafting and MP NOT TESTED).
+
 ## Still to add
 
-- First-party filter housings, media, recipes, replacement maintenance, and
-  verified balance over the implemented physical capacity coordinator.
+- Additional filter types, automatic inline treatment, and verified media/recipe
+  balance after runtime acceptance of the implemented sediment batch housing.
 - Save migration policy and authenticated remote administration/repair/reset.
 - Named third-party adapters only through native fixtures passing conformance.
 - foodWorks appliance/preservation consumers using exact drain transactions.

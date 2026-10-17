@@ -82,9 +82,10 @@
 1. The generic filter-definition/evaluation contract, production load graph,
    semantic infrastructure role, and bounded chain planner are implemented with
    provider-owned treatment math, declared contaminant axes, capacity,
-   condition, flow and protected queries. Recoverable physical filter commits,
-   first-party housings, media, recipes, maintenance and verified balance remain
-   future work rather than guessed by the framework.
+   condition, flow and protected queries. Recoverable physical capacity commits
+   and the 0.35.0 craftable sediment batch housing/cartridges are implemented in
+   source. Native crafting, balance, additional media types, automatic inline
+   treatment and dedicated validation remain future work.
 2. Define migration policy and an authenticated remote-administration contract.
    Read-only server-side persistence inspection is implemented; migration,
    repair/reset, and remote permissions remain deliberately unspecified.

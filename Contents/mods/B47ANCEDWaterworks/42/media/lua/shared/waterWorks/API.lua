@@ -1,5 +1,5 @@
 local waterWorks=rawget(_G,"waterWorks") or {}
-waterWorks.VERSION="0.34.1"
+waterWorks.VERSION="0.35.0"
 waterWorks.MOD_ID="B47ANCEDWaterworks"
 waterWorks.DISPLAY_NAME="B47ANCE’d Waterworks"
 waterWorks.Adapters=waterWorks.Adapters or {}

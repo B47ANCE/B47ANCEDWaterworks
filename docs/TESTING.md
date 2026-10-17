@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Testing
 
-Current version: 0.34.1.
+Current version: 0.35.0.
 
 The Power integration suite now runs without a synthetic `powerWorks` global.
 Fixtures initialize battery state with the current Power API and inspect charge/
@@ -248,3 +248,21 @@ nothing, and repeating one request cannot consume twice. Repeat against loaded
 fixtures and dropped fluid items, across save/reload, with a remote client, and
 with sampling disabled. Inspect console.txt for B47ANCE’d Waterworks errors after each
 case.
+
+## Sediment housing acceptance (0.35.0)
+
+[TESTED, offline Windows] 54 cases PASS with Power; 48 standalone PASS and six
+optional-Power skips. Three sediment cases cover shared state, server commands
+and client presentation/action intent; filter transaction tests add committed-media
+compensation and stale-state rejection. All 48 runtime Lua files compile as Lua 5.1.
+
+[RUNTIME GATE] Follow SEDIMENT_FILTER.md with disposable saves. Craft both recipes;
+verify full-bag destruction and exact ingredient deductions, nested cartridge
+removal on server and both clients, cancellation/moving/death, generic failure
+feedback, water quality/taint and no volume change. Repeat racing requests with
+two clients; test insufficient/exhausted capacity, disabled settings, relocation,
+chunk reuse, old-save initialization, restart and client join/rejoin. Confirm
+quarantine never resets/refills during interruption and full cartridges remain
+unchanged when capacity defaults change. Test English fallback, controller and
+UI scale. Native art is a placeholder. Timed duration is presentation, not
+server anti-cheat. G7/stable G8 remain BLOCKED until dedicated evidence exists.

@@ -28,6 +28,7 @@ local function normalizeState(kind,value)
     if type(value.filterId)=="string" and value.filterId~="" then result.filterId=value.filterId end
     if kind=="filter"then
         result.replaceableMedia=value.replaceableMedia==true
+        result.batchFilter=value.batchFilter==true
         result.exhausted=value.exhausted==true or result.remainingCapacity~=nil and result.remainingCapacity<=0
         if result.flowMultiplier~=nil then result.flowMultiplier=math.min(1,result.flowMultiplier)end
     end

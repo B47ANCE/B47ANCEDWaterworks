@@ -29,6 +29,35 @@ for file,key,suffix in [('NetworkInspector','UI_B47ANCEDWaterworks_NetworkInspec
     assert key in (lua/'client/waterWorks'/(file+'.lua')).read_text(encoding='utf-8')
 options=(mod/'42/media/sandbox-options.txt').read_text(encoding='utf-8')
 for key in re.findall(r'translation\s*=\s*([A-Za-z0-9_]+)',options):assert 'Sandbox_'+key in translations, 'missing sandbox label: '+key
+# New content keys follow the installed Build 42 raw item/recipe JSON format.
+for key in ['Register','Install','Replace','Capacity','Empty','Recovery','Hazards','Filter','LastFailed']:
+    assert 'UI_B47ANCEDWaterworks_Sediment'+key in translations, 'missing sediment action label: '+key
+for name in ['SedimentFilterHousing','SedimentFilterMedia']:
+    assert 'waterWorks.'+name in translations, 'missing raw item translation: '+name
+    assert 'Assemble'+name in translations, 'missing raw recipe translation: '+name
+content=(mod/'42/media/scripts/B47ANCEDWaterworks_Items.txt').read_text(encoding='utf-8')
+assert re.search(r'item 1 \[Base\.Sandbag\] flags\[ItemCount;IsFull\] mode:destroy',content), 'cartridge must consume a whole full sandbag'
+for name in ['SedimentFilterHousing','SedimentFilterMedia']:
+    assert re.search(r'craftRecipe Assemble'+name+r'\s*\{',content), 'missing recipe: '+name
+    assert 'item 1 waterWorks.'+name in content, 'missing recipe output: '+name
+# Portable implementation of the documented hub source digest contract.
+overview=json.loads((root/'docs/MOD_OVERVIEW.json').read_text(encoding='utf-8'))
+assert overview['schema']==1 and overview['id']=='water' and overview['reviewed'] is True
+assert overview['version']==(root/'VERSION').read_text(encoding='utf-8').strip()
+digest=hashlib.sha256();inputs=[root/'README.md',root/'VERSION']
+for source in ['src','Contents/mods']:
+    base=root/source
+    if base.is_dir():inputs.extend(p for p in base.rglob('*')if p.is_file())
+assert len(inputs)<=20000, 'overview source file budget exceeded'
+for path in sorted(set(inputs),key=lambda p:p.as_posix()):
+    if path.suffix.lower()not in {'.lua','.txt','.json','.md','.info',''}:continue
+    assert not path.is_symlink() and path.stat().st_size<=10000000, 'unsafe overview source'
+    digest.update(path.relative_to(root).as_posix().encode());digest.update(b'\0')
+    digest.update(hashlib.sha256(path.read_bytes()).digest())
+assert digest.hexdigest()==overview['source_digest'], 'overview review is stale; refresh after source/README/VERSION edits'
+for evidence in overview['evidence']:
+    relative=Path(evidence);assert not relative.is_absolute() and '..'not in relative.parts and (root/relative).is_file(), 'unsafe/missing overview evidence'
+print('PASS sediment content/localization and reviewed overview source/version binding')
 workshop=(root/'workshop.txt').read_text(encoding='utf-8')
 body='\n'.join(line[len('description='):]for line in workshop.splitlines()if line.startswith('description='))
 assert body.rstrip()==(root/'WORKSHOP_DESCRIPTION.txt').read_text(encoding='utf-8').rstrip(), 'Workshop body/source drift'

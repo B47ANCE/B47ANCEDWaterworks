@@ -4,11 +4,32 @@ B47ANCE’d Waterworks is the generic water and fluid-infrastructure provider fo
 ecosystem. Its first foundation extends Build 42 fluid containers with safe,
 authoritative transfer and persistent multi-axis water quality metadata.
 
-- Version: 0.34.1 foundation (not yet a gameplay release).
+- Version: 0.35.0 foundation (not yet a gameplay release).
 - Hard dependencies: none beyond Project Zomboid.
 - Optional integrations: B47ANCE’d Power (`B47ANCEDPower`, with legacy `powerWorks` fallback) and lightWorks.
 
-Current foundation:
+## Sediment filter workflow (0.35.0)
+
+Craft a Sediment Filter Housing from two small metal sheets, two metal pipes
+and one duct tape, using a retained pipe wrench. Craft each Sediment Filter
+Cartridge from one full sandbag and one sheet. Place the housing, right-click to
+register it, install a cartridge, and connect it to a registered water storage
+container or fixture using the existing endpoint actions. Select either endpoint,
+then choose the sediment filtering action on its connected counterpart.
+
+Filtering treats the entire connected container in place. A cartridge handles
+100 fluid units by default and each batch reduces particulate and turbidity by
+75%; biological, chemical and salt hazards remain. Insufficient capacity rejects
+the whole batch. Replace a used cartridge to refill capacity; old media is discarded.
+Ordinary transfers cannot route through this batch device. No electricity is needed.
+
+Four server sandbox options control enablement, capacity, removal and action time.
+See [filter design and configuration](docs/SEDIMENT_FILTER.md). Recipes, native
+inventory synchronization, visuals, SP and dedicated behavior await runtime tests.
+English is supplied with vanilla fallback for other locales. Vanilla pump/sandbag
+art is a placeholder. No deployment or Workshop upload accompanies this change.
+
+## Current foundation
 
 - reserves and commits bounded physical filter-media capacity through
   provider-owned identities, verifies every mutation, rolls back partial chains,
@@ -159,7 +180,7 @@ See [rename compatibility](docs/RENAMING.md), [version policy](docs/VERSION_POLI
 and [validation](docs/VALIDATION.md). Source checks: `python scripts/check_versions.py`;
 `python scripts/run_lua_tests.py`; `python scripts/validate.py`.
 Public source: [B47ANCE/B47ANCEDWaterworks](https://github.com/B47ANCE/B47ANCEDWaterworks).
-The initial source import uses `feature/github-onboarding` and PR review.
+The initial source import is merged on main; development uses feature branches and PR review.
 See [GitHub workflow](GITHUB_ONBOARDING.md). SP/dedicated NOT TESTED;
 G7 BLOCKED / NOT TESTED and stable-release G8 BLOCKED.
 
@@ -168,5 +189,5 @@ G7 BLOCKED / NOT TESTED and stable-release G8 BLOCKED.
 Powered pumps, purification and heating now prefer the current `B47ANCEDPower`
 API and retain the legacy `powerWorks` fallback. Waterworks never rewrites
 Power-owned battery or recovery records. See [the integration contract and
-validation](docs/POWER_INTEGRATION.md). The 0.34.1 offline suite passes all 51
+validation](docs/POWER_INTEGRATION.md). The 0.35.0 offline suite passes all 54
 cases with the actual Power source; native SP/dedicated behavior remains untested.

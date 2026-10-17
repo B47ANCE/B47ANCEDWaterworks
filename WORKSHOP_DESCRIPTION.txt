@@ -4,14 +4,18 @@ Water storage, plumbing, pumps, pressure, treatment, and distribution infrastruc
 
 B47ANCE’d Waterworks extends vanilla fluid containers through authoritative transfers, persistent quality, reusable networks, and safe provider APIs while preserving native storage behavior.
 
-[b]Mod Version: 0.34.1[/b]
+[b]Mod Version: 0.35.0[/b]
 
 [b]Development Status[/b]
 
 The fluid, quality, transaction, and network foundations are implemented; complete player-facing infrastructure and multiplayer validation remain in development.
 
+MP testing build - dedicated multiplayer NOT TESTED. Native crafting and SP NOT TESTED; this is development source with stable-release G8 BLOCKED.
+
 [h2]Current Features[/h2]
 [list]
+[*]Craftable sediment housing and replaceable sand/cloth cartridges for explicit connected-container batch filtering
+[*]Server-owned cartridge capacity and independent sediment/turbidity reduction; biological, chemical and salt hazards remain
 [*]FluidContainer, legacy-water, world-item, and third-party adapters
 [*]Authoritative measured transfers through verified vanilla primitives
 [*]Persistent biological, particulate, chemical, salinity, and turbidity quality

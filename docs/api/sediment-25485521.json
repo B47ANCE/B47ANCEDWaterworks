@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "steam_build": "25485521",
+  "game_version": "UNKNOWN",
+  "runtime_status": "NOT_TESTED",
+  "records": [
+    {
+      "api_library": "Project Zomboid vanilla Lua/exposed engine APIs",
+      "game_version": "UNKNOWN",
+      "steam_build": "25485521",
+      "status": "VERIFIED",
+      "runtime_status": "NOT_TESTED",
+      "verified_on": "2026-10-17",
+      "signature_scope": "observed_vanilla_call",
+      "receiver_type": "global function",
+      "symbol": "sendRemoveItemFromContainer",
+      "signature": "sendRemoveItemFromContainer(self.character:getInventory(), self.lure)",
+      "side": "server",
+      "returns": "Not used by this observed vanilla call; complete return contract UNKNOWN.",
+      "mutation": "Vanilla server action removes a lure from character root inventory then sends removal synchronization. Native delivery and nested inventory behavior NOT TESTED.",
+      "evidence": [
+        {
+          "kind": "vanilla_lua",
+          "path": "media/lua/shared/TimedActions/Fishing/TimedActions/AIAttachLureAction.lua",
+          "sha256": "07855826e21985d00de1815c36a3a80b4cadd9783ec3cefc16defe06b6b1da7f",
+          "lines": [
+            61,
+            91
+          ],
+          "statement": "Vanilla action removes the lure and calls synchronization under isServer with the same root inventory and item."
+        }
+      ],
+      "notes": "Observed root-container call form only. Waterworks uses the actual nested owner container and checks removal; replication to clients remains a dedicated runtime gate."
+    },
+    {
+      "api_library": "Project Zomboid vanilla Lua/exposed engine APIs",
+      "game_version": "UNKNOWN",
+      "steam_build": "25485521",
+      "status": "VERIFIED",
+      "runtime_status": "NOT_TESTED",
+      "verified_on": "2026-10-17",
+      "signature_scope": "observed_vanilla_call",
+      "receiver_type": "ISBaseTimedAction subclass",
+      "symbol": "perform",
+      "signature": "ISBaseTimedAction.perform(self)",
+      "side": "client",
+      "returns": "Not used by caller; complete return contract UNKNOWN.",
+      "mutation": "Client-only BBQ action builds local UI then advances its queue through the base perform method; no shared gameplay mutation observed.",
+      "evidence": [
+        {
+          "kind": "vanilla_lua",
+          "path": "media/lua/client/TimedActions/ISBBQInfoAction.lua",
+          "sha256": "2d1b00fcda8c90e59d377c9e5cd8b4a4be69bfa004e9a8f12c4009f39b650e6e",
+          "lines": [
+            15,
+            47
+          ],
+          "statement": "Client-local action defines perform without complete and advances the native queue through the base method; its maxTime is zero."
+        }
+      ],
+      "notes": "Supports client-local completion call form only. Waterworks nonzero duration and command submission are independently authored and NOT TESTED in native runtime."
+    }
+  ],
+  "content_observations": [
+    {
+      "kind": "vanilla_lua",
+      "path": "media/scripts/generated/entities/outdoors/entity_sandbagwall.txt",
+      "sha256": "3735e864349fd3aad22a7336afa0225ee3050b71f3f14e6dfd280504710553ad",
+      "lines": [
+        45,
+        54
+      ],
+      "statement": "Native construction recipe consumes full sandbags using ItemCount and IsFull flags with destroy mode."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/scripts/generated/items/drainable.txt",
+      "sha256": "2fc00391613c83d581b53d1142f4f233f8392b29d8f8702fb1b3516b0c047732",
+      "lines": [
+        348,
+        381
+      ],
+      "statement": "Native drainable script declares Sandbag with Sandbag icon and SandBag world model."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/scripts/generated/items/normal.txt",
+      "sha256": "b76cf5f91dce33567ca2bda305c4e450be297aae6b1fc11b5b34dcb280d74567",
+      "lines": [
+        8493,
+        8510
+      ],
+      "statement": "Native item content declares SmallSheetMetal used by the independently authored housing recipe."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/scripts/generated/items/normal.txt",
+      "sha256": "b76cf5f91dce33567ca2bda305c4e450be297aae6b1fc11b5b34dcb280d74567",
+      "lines": [
+        10516,
+        10534
+      ],
+      "statement": "Native item content declares Sheet used by the independently authored cartridge recipe."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/shared/Translate/TR/ItemName.json",
+      "sha256": "716c527e347f14ca71c431597a854bff8c1ae06facbccaece56142a633e83cb3",
+      "lines": [
+        2,
+        2
+      ],
+      "statement": "Installed item translations use raw full item type keys."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/shared/Translate/TR/Recipes.json",
+      "sha256": "0f46cfe95fcb9857432812b278253c153b430acebda6a630c581b890af04ecb9",
+      "lines": [
+        963,
+        963
+      ],
+      "statement": "Installed recipe translations use raw recipe identifiers."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/server/ISObjectClickHandler.lua",
+      "sha256": "1707fd726bbd8544bc9b7159766739cd1ad8972f87f41cecf5ab87ac1436a9fc",
+      "lines": [
+        352,
+        352
+      ],
+      "statement": "Installed Lua observes a no-argument getTimestampMs call; complete native return/range contract and this client usage remain unverified."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/scripts/generated/items/normal.txt",
+      "sha256": "b76cf5f91dce33567ca2bda305c4e450be297aae6b1fc11b5b34dcb280d74567",
+      "lines": [
+        11808,
+        11818
+      ],
+      "statement": "Native TirePump item references the TirePump icon and world model reused as a housing placeholder."
+    }
+  ],
+  "limits": "Fingerprints prove only inspected source bytes and described call forms. No native invocation, crafting, nested inventory synchronization, SP or dedicated MP evidence."
+}

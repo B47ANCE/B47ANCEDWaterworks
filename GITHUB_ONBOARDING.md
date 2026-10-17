@@ -2,10 +2,9 @@
 
 Public repository: https://github.com/B47ANCE/B47ANCEDWaterworks
 
-The initial main commit is a repository bootstrap. The complete current source,
-canonical VERSION, tests and documentation are imported on
-`feature/github-onboarding` for review before merging main. No merge or stable
-release tag is authorized by repository creation alone.
+The complete source import was merged through PR #1. Canonical VERSION, tests
+and documentation are on main. Subsequent iterations use named feature/fix
+branches and PR review before merging main.
 
 Development uses feature/fix branches and PRs. CI runs offline tests only, with
 read-only repository permissions and commit-pinned official actions. It does not
