@@ -63,6 +63,30 @@ MP testing build - dedicated multiplayer NOT TESTED. Native crafting and SP NOT 
 [*]Hosted and dedicated-server validation
 [/list]
 
+[h2]Compatibility & Requirements[/h2]
+Build 42; package minimum 42.20.3. No required mod dependencies. Powered pumps,
+purification and heating optionally use B47ANCEDPower with legacy powerWorks
+fallback. The sediment housing needs no electricity. Update enabled-mod lists
+from waterWorks to B47ANCEDWaterworks; never enable both copies together.
+
+[h2]Configuration[/h2]
+Server sandbox settings control infrastructure actions, inspection, sampling and
+sediment filtering. Sediment defaults: 100 water units per cartridge and 75%
+particulate/turbidity removal per batch. Biological, chemical and salt hazards
+remain unchanged. Cartridge replacement discards the old media.
+
+[h2]Source Code & Development[/h2]
+[url=https://github.com/B47ANCE/B47ANCEDWaterworks]GitHub - Source Code & Issues[/url]
+
+[h2]Known Issues & Test Status[/h2]
+MP testing build - dedicated multiplayer NOT TESTED. Offline checks are not
+native game verification. Native crafting, nested inventory synchronization,
+save/load, streaming, join/rejoin and dedicated restart remain untested.
+Uncertain sediment operations remain blocked for recovery inspection; a housing
+reset/resolution UI is not implemented. Item visuals use vanilla placeholders.
+G7 and stable-release G8 remain BLOCKED. Test on disposable saves and report
+failures; no automatic migration or backward downgrade is certified.
+
 [b]Credits[/b]
 Project Director & Designer: B47ANCE
 Development, systems architecture, implementation, testing & documentation: Codex

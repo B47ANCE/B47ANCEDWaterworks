@@ -35,7 +35,8 @@
     "docs/validation/0.34.1-local-power.md",
     "docs/validation/0.34.1-github.md",
     "docs/validation/0.35.0-sediment.md",
-    "assets/artwork/history/thumbnail-through-0.35.0.png"
+    "assets/artwork/history/thumbnail-through-0.35.0.png",
+    "docs/validation/0.35.1-artwork.md"
   ],
   "local_only_historical": [
     "dist/",

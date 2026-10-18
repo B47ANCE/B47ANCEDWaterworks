@@ -198,3 +198,12 @@ API and retain the legacy `powerWorks` fallback. Waterworks never rewrites
 Power-owned battery or recovery records. See [the integration contract and
 validation](docs/POWER_INTEGRATION.md). The 0.35.0 offline suite passes all 54
 cases with the actual Power source; native SP/dedicated behavior remains untested.
+
+## Workshop preparation
+
+`python scripts/prepare_workshop.py --mp-testing --output-root <local-Workshop/_steamcmd>`
+creates a new package, stage, manifest and VDF for existing item 3788594390 from
+clean committed source. It never signs in, uploads, deploys or restarts Steam.
+Use the verified local authoring folder, outside the source repository. See
+[preparation and distribution gates](docs/WORKSHOP_PUBLISHING.md). Stable-release
+G8 remains blocked; preparation is only for a labelled MP testing build.

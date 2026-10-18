@@ -2,6 +2,13 @@
 
 ## 0.35.1 - 2026-10-17
 
+- Add an explicit prepare-only Workshop packaging helper and documented source,
+  ZIP, staging and VDF integrity checks for the selected existing item. Preserve
+  visibility, prior packages and original artwork; no login/upload/restart is run
+  by the helper. Publication preparation keeps the same 0.35.1 build.
+- Add verified public source URL, compatibility/configuration and known runtime
+  limitations to canonical Workshop prose while preserving attribution/format.
+
 - Replace the Workshop authoring preview and in-game thumbnail/poster with the
   user-supplied Waterworks artwork, preserving exact 1254x1254 PNG bytes.
 - Preserve prior artwork under assets/artwork/history/ and keep its original

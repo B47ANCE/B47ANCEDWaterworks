@@ -16,6 +16,13 @@ archive and still verifies their original hashes. Current artwork is checked
 independently against artwork-provenance.json, including PNG structure/chunk CRCs.
 Prior 0.35.0 validation is preserved at validation/0.35.0-sediment.md, not relabelled
 as current runtime proof. The reviewed overview version/digest is refreshed.
+The completed artwork-only report is retained at validation/0.35.1-artwork.md.
+
+Publication preparation adds a prepare-only package/VDF helper and canonical
+source/compatibility/configuration/known-issue prose. It changes no gameplay.
+Source/stage/ZIP integrity and the exact package commit are recorded in the local
+release manifest after preparation; no current package or upload is inferred from
+this document. See WORKSHOP_PUBLISHING.md for commands and stable/MP gate separation.
 
 ## Commands and offline evidence
 
@@ -43,7 +50,6 @@ records actual commit, remote SHA and CI outcome after pushing.
 NOT TESTED. The supplied image is retained at its original dimensions and file
 size, with no claim of uploader acceptance. Existing crafting, SP and dedicated
 multiplayer gates remain NOT TESTED; G7 and stable-release G8 remain BLOCKED.
-See SEDIMENT_FILTER.md and POWER_INTEGRATION.md for gameplay acceptance. No
-packaging, release tag, live deployment, game/server launch or Steam upload is
-part of this iteration. Historical dist/ and upload receipts remain local-only;
+See SEDIMENT_FILTER.md and POWER_INTEGRATION.md for gameplay acceptance. Prepare-only MP-test packaging is authorized. No stable release tag, live
+deployment, game/server launch or Steam upload is part of this iteration. Historical dist/ and upload receipts remain local-only;
 missing clone artifacts are NOT PRESENT rather than an archive-integrity PASS.
