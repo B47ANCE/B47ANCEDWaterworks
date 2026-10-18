@@ -72,7 +72,8 @@ art=json.loads((root/'docs/artwork-provenance.json').read_text(encoding='utf-8')
 art_paths={'preview.png',inv['source_root']+'/thumbnail.png'}
 assert art['schema']==1 and set(art['current_files'])==art_paths
 relocations=art['historical_relocations']
-assert set(relocations)==art_paths, 'only explicitly replaced artwork may relocate history'
+assert art['icon']==inv['source_root']+'/42/icon.png'
+assert set(relocations)==art_paths|{art['icon']}, 'only explicitly replaced artwork may relocate history'
 for path in relocations.values():
     relative=Path(path)
     assert not relative.is_absolute() and '..'not in relative.parts and path.startswith('assets/artwork/history/'), 'unsafe artwork history path'
@@ -98,7 +99,14 @@ def png_dimensions(path):
 for path in art_paths:
     assert sha(root/path)==art['source']['sha256'], 'current artwork bytes differ from supplied source'
     assert png_dimensions(root/path)==art['source']['dimensions'], 'current artwork dimensions differ'
-print('PASS current artwork exact bytes, PNG structure/CRCs and dimensions; prior artwork retained')
+icon_source=art['icon_source']
+assert icon_source['master']=='assets/artwork/waterworks-icon-transparent.png'
+for path in [art['icon'],icon_source['master']]:
+    assert sha(root/path)==icon_source['sha256'], 'icon differs from approved transparent source'
+    assert png_dimensions(root/path)==icon_source['dimensions'], 'icon dimensions differ'
+    assert (root/path).read_bytes()[25]==6, 'icon must retain RGBA alpha'
+assert (root/icon_source['prompt']).is_file(), 'missing icon authoring prompt'
+print('PASS approved RGBA icon, unchanged thumbnail/preview, PNG CRCs/dimensions and artwork history')
 checked_protected=0
 for path,digest in proof['protected_files'].items():
     if not (root/path).exists() and path in inv['local_only_historical']:

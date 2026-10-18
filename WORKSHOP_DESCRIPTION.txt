@@ -4,7 +4,7 @@ Water storage, plumbing, pumps, pressure, treatment, and distribution infrastruc
 
 B47ANCE’d Waterworks extends vanilla fluid containers through authoritative transfers, persistent quality, reusable networks, and safe provider APIs while preserving native storage behavior.
 
-[b]Mod Version: 0.35.1[/b]
+[b]Mod Version: 0.35.2[/b]
 
 [b]Development Status[/b]
 

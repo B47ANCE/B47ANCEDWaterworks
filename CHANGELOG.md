@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.35.2 - 2026-10-18
+
+- Use the approved text-free transparent barrel/faucet/wrench cutout as the mod
+  icon, retaining its original PNG bytes and alpha. Preserve authoring master,
+  prompt and previous icon with explicit provenance.
+- Keep both the in-game thumbnail/poster and Workshop preview byte-for-byte
+  unchanged. No gameplay, save, sandbox or optional Power contract changes.
+- Refresh all version mirrors, overview bindings, changenotes and validation.
+  Offline checks do not establish native rendering or dedicated multiplayer.
+- Intended distribution is an explicitly authorized MP testing build; G7 and
+  stable-release G8 remain BLOCKED pending dedicated evidence.
+
 ## 0.35.1 - 2026-10-17
 
 - Add an explicit prepare-only Workshop packaging helper and documented source,

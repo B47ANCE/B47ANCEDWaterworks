@@ -5,10 +5,10 @@ WORKSHOP_DESCRIPTION.txt, WORKSHOP_CHANGE_NOTE.txt, workshop.txt, preview.png,
 and Contents/mods/B47ANCEDWaterworks/. Existing item: 3788594390, App ID 108600.
 Public source: https://github.com/B47ANCE/B47ANCEDWaterworks.
 
-The user's current instruction is prepare-only. The initial cached SteamCMD
-sign-in was rejected; no content upload was attempted. Authentication failure is
-not validation evidence about the build, and no credentials/logs are committed.
-Do not retry login or upload without renewed authorization.
+The preparation helper never authenticates or uploads. Explicit publish
+authorization and valid cached authentication are separate prerequisites for
+SteamCMD. Prior authentication failures are not build validation evidence; no
+credentials/private logs are committed. Preserve the existing item and visibility.
 
 ## Preparation command
 

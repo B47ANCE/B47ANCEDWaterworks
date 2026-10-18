@@ -36,7 +36,9 @@
     "docs/validation/0.34.1-github.md",
     "docs/validation/0.35.0-sediment.md",
     "assets/artwork/history/thumbnail-through-0.35.0.png",
-    "docs/validation/0.35.1-artwork.md"
+    "docs/validation/0.35.1-artwork.md",
+    "docs/validation/0.35.1-preparation.md",
+    "assets/artwork/history/icon-through-0.35.1.png"
   ],
   "local_only_historical": [
     "dist/",

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.35.1",
+  "version": "0.35.2",
   "source": {
     "kind": "user_supplied",
     "received": "2026-10-17",
@@ -19,8 +19,41 @@
   ],
   "historical_relocations": {
     "preview.png": "assets/artwork/history/thumbnail-through-0.35.0.png",
-    "Contents/mods/B47ANCEDWaterworks/thumbnail.png": "assets/artwork/history/thumbnail-through-0.35.0.png"
+    "Contents/mods/B47ANCEDWaterworks/thumbnail.png": "assets/artwork/history/thumbnail-through-0.35.0.png",
+    "Contents/mods/B47ANCEDWaterworks/42/icon.png": "assets/artwork/history/icon-through-0.35.1.png"
   },
   "icon": "Contents/mods/B47ANCEDWaterworks/42/icon.png",
-  "scope": "Workshop authoring preview and existing in-game poster reference; no icon, gameplay, item texture, package or published Workshop changes."
+  "scope": "Approved transparent cutout replaces only 42/icon.png. Both thumbnail/preview files retain their exact 0.35.1 bytes. Gameplay, save schemas and item textures are unchanged.",
+  "icon_source": {
+    "kind": "approved_generated_cutout",
+    "approved": "2026-10-18",
+    "tool": "built-in image_gen",
+    "master": "assets/artwork/waterworks-icon-transparent.png",
+    "prompt": "assets/artwork/waterworks-icon-transparent.prompt.txt",
+    "sha256": "fbc91c809076263f0e9a6e617426246e6730cd249a952b1eee58e41371fa30c5",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "transform": "Exact approved transparent PNG copied; no resizing/redrawing during installation.",
+    "alpha": {
+      "mode": "RGBA",
+      "extrema": [
+        0,
+        255
+      ],
+      "corners": "fully transparent",
+      "evidence": "TESTED offline Windows with Pillow; no native PZ rendering claimed"
+    },
+    "display_source": {
+      "steam_build": "25485521",
+      "path": "media/lua/client/OptionScreens/ModSelector/ModListBox.lua",
+      "sha256": "53f0de830841eb216ec85a8f8f9c9b3dfc3d8d637bf8f1097d5dcb9c980de670",
+      "lines": [
+        199,
+        203
+      ],
+      "claim": "Installed mod list scales the selected icon texture to its button size; actual decoding/rendering of the new PNG NOT TESTED."
+    }
+  }
 }

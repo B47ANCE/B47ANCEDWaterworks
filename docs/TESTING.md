@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Testing
 
-Current version: 0.35.1.
+Current version: 0.35.2.
 
 The Power integration suite now runs without a synthetic `powerWorks` global.
 Fixtures initialize battery state with the current Power API and inspect charge/
@@ -266,3 +266,14 @@ quarantine never resets/refills during interruption and full cartridges remain
 unchanged when capacity defaults change. Test English fallback, controller and
 UI scale. Native art is a placeholder. Timed duration is presentation, not
 server anti-cheat. G7/stable G8 remain BLOCKED until dedicated evidence exists.
+
+## Transparent icon acceptance (0.35.2)
+
+[TESTED, offline Windows] The installed icon and authoring master are identical
+RGBA PNGs with alpha spanning 0..255 and fully transparent corners. CRC/dimensions
+and source hashes are enforced; both thumbnail hashes match their 0.35.1 values.
+[VERIFIED, source] Installed mod-list Lua scales icon textures to button bounds;
+its portable source fingerprint is in artwork-provenance.json. [RUNTIME GATE]
+Check the mod selector on light/dark backgrounds at multiple UI scales and with
+controller focus. Native PNG decoding/display remains NOT TESTED. Existing SP,
+dedicated G7 and stable-release G8 gates are unchanged.

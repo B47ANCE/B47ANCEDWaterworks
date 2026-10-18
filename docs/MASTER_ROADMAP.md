@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Master Roadmap
 
-Canonical version: 0.35.1 (root `VERSION`).
+Canonical version: 0.35.2 (root `VERSION`).
 
 ## Implemented
 
