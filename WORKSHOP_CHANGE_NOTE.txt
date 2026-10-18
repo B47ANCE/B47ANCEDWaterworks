@@ -1,3 +1,12 @@
+[b]Version 0.35.1[/b]
+
+[h2]Waterworks artwork[/h2]
+[list]
+[*]Update Workshop preview and in-game thumbnail/poster with user-supplied Waterworks artwork.
+[*]Keep the existing icon and gameplay. Preserve the previous artwork and validation history.
+[*]MP testing build - dedicated multiplayer NOT TESTED. Native thumbnail presentation NOT TESTED; stable-release G8 BLOCKED.
+[/list]
+
 [b]Version 0.35.0[/b]
 
 [h2]Sediment filter housing[/h2]

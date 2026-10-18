@@ -2,6 +2,6 @@ B47ANCE’d Waterworks — STEAM WORKSHOP INFO
 
 Status: API and water-quality foundation; not yet a gameplay release.
 Author: B47ANCE
-Version: 0.35.0
+Version: 0.35.1
 Internal Mod ID: B47ANCEDWaterworks
 Workshop ID: 3788594390

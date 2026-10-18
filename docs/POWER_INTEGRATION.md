@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Power integration
 
-Current version: 0.35.0.
+Current version: 0.35.1.
 
 [VERIFIED, source] Current Power API: `B47ANCEDPower`, with `powerWorks` used only
 when the current global is absent. Lookups are dynamic and do not force-load an

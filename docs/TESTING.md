@@ -1,6 +1,6 @@
 # B47ANCE’d Waterworks Testing
 
-Current version: 0.35.0.
+Current version: 0.35.1.
 
 The Power integration suite now runs without a synthetic `powerWorks` global.
 Fixtures initialize battery state with the current Power API and inspect charge/

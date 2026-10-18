@@ -1,55 +1,55 @@
 # Waterworks validation
 
-Current version: 0.35.0.
+Current version: 0.35.1.
 
-[VERIFIED, source] Additive MINOR feature: first-party craftable sediment housing,
-replaceable cartridges, explicit batch filtering and server sandbox controls.
-Prior 0.34.1 GitHub validation is preserved verbatim in
-validation/0.34.1-github.md; its evidence does not become current runtime proof.
+[VERIFIED, source] Compatible artwork-only PATCH from 0.35.0. The submitted PNG
+is copied byte-for-byte to preview.png and the authoritative mod thumbnail. Both
+are 1254x1254 with SHA-256
+1ac1ce5b27c2718b6a8d2137e5d5b1708a27e56199bcb908e0d5e6888ec6f50e.
+The existing 32x32 icon and gameplay are unchanged. No new API, synchronization,
+save schema or sandbox setting is needed for this local presentation delta.
 
-## Commands and evidence
+The former artwork is preserved byte-for-byte at
+assets/artwork/history/thumbnail-through-0.35.0.png. Immutable rename provenance
+is unchanged; the validator resolves only its two replaced artwork paths to that
+archive and still verifies their original hashes. Current artwork is checked
+independently against artwork-provenance.json, including PNG structure/chunk CRCs.
+Prior 0.35.0 validation is preserved at validation/0.35.0-sediment.md, not relabelled
+as current runtime proof. The reviewed overview version/digest is refreshed.
+The completed artwork-only report is retained at validation/0.35.1-artwork.md.
 
-From the project root, using Python with requirements-dev.txt (lupa 2.6):
+Publication preparation adds a prepare-only package/VDF helper and canonical
+source/compatibility/configuration/known-issue prose. It changes no gameplay.
+Source/stage/ZIP integrity and the exact package commit are recorded in the local
+release manifest after preparation; no current package or upload is inferred from
+this document. See WORKSHOP_PUBLISHING.md for commands and stable/MP gate separation.
+
+## Commands and offline evidence
+
+From the project root with Python and requirements-dev.txt:
 
 ```powershell
 python scripts/check_versions.py
-python scripts/run_lua_tests.py --power-root ../B47ANCEDPower
 python scripts/validate.py
+python scripts/run_lua_tests.py --power-root ../B47ANCEDPower
 python scripts/check_repository.py --staged
 git diff --cached --check
 ```
 
-[TESTED, offline Windows] Actual Power source: 54 PASS / 0 FAIL / 0 SKIPPED;
-48 runtime-source Lua 5.1 syntax files PASS. Standalone: 48 PASS / 0 FAIL /
-6 optional-Power SKIPPED. Host objects are stubs, not native PZ objects. Existing
-Power pin remains 40ff9ebfe247d56d7dd2e308e7b7eabfb61a7ce0, API 0.17.0-dev.1.
-No Power repository modifications are included. CI repeats standalone and pinned-
-Power tests on Ubuntu; its final result is reported with the feature PR.
+[TESTED, offline Windows] Version consistency, exact current artwork identity,
+PNG structure/CRC/dimensions, prior artwork/history, Lua-only layout, translation
+and import case checks PASS. Standalone Lua 5.1: 48 PASS / 0 FAIL / 6 optional-
+Power skips; with Power: 54 PASS / 0 FAIL / 0 SKIPS. All 48 runtime Lua files
+compile. Power pin remains 40ff9ebfe247d56d7dd2e308e7b7eabfb61a7ce0.
+CI repeats source audits and standalone/pinned-Power tests on Ubuntu. The task/PR
+records actual commit, remote SHA and CI outcome after pushing.
 
-New assertions cover exact owned nested media, rejected removal, actor/reach/floor,
-client denial, hostile payloads, generation/replay, capacity and hazard preservation,
-ordinary route blocking, private treatment permission, verified media compensation,
-uncertain water quarantine, restart table fixtures and client menu/action intent.
-The command helper now preserves valid false returns, including living isDead=false.
-Version, item/recipe translations, import case, Lua-only layout, Workshop paragraphs,
-protected historical bytes and reviewed overview bindings are checked separately.
-Actual native crafting and inventory synchronization remain unverified.
+## Remaining gates
 
-Source evidence is tied to Steam build 25485521, full engine version UNKNOWN;
-see api/sediment-25485521.json and SEDIMENT_FILTER.md. No custom Java/JAR dependency,
-external-mod implementation copying or new remote access is introduced.
-
-## Runtime and release gates
-
-[RUNTIME GATE] SP, hosted and dedicated multiplayer NOT TESTED. G7 BLOCKED /
-NOT TESTED; stable-release G8 BLOCKED. SEDIMENT_FILTER.md specifies native recipes,
-two-client races, interruption, streaming/relocation, save/reload and join/restart
-acceptance. No automated repair/reset exists for quarantined housing operations.
-Existing power runtime gates in POWER_INTEGRATION.md also remain outstanding.
-
-Public pushes require freshness, index/secret review and exact remote SHA checks.
-The PR records commit and CI outcome; local version metadata proves neither.
-Historical dist/ and upload receipts stay local-only: present bytes are checked;
-missing clean-clone archives are NOT PRESENT, never an archive integrity PASS.
-No package, release artifact check, deploy, publish, stable tag or game/server launch
-is part of this iteration. CI is read-only and does not establish G7/G8.
+[RUNTIME GATE] Native thumbnail display/scaling and actual Workshop upload are
+NOT TESTED. The supplied image is retained at its original dimensions and file
+size, with no claim of uploader acceptance. Existing crafting, SP and dedicated
+multiplayer gates remain NOT TESTED; G7 and stable-release G8 remain BLOCKED.
+See SEDIMENT_FILTER.md and POWER_INTEGRATION.md for gameplay acceptance. Prepare-only MP-test packaging is authorized. No stable release tag, live
+deployment, game/server launch or Steam upload is part of this iteration. Historical dist/ and upload receipts remain local-only;
+missing clone artifacts are NOT PRESENT rather than an archive-integrity PASS.

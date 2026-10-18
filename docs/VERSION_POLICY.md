@@ -23,3 +23,9 @@ Meaningful gameplay changes require dedicated G7 PASS before stable-release G8.
 SP/offline results never substitute for that evidence. Explicit Workshop MP-test
 uploads remain subject to the current shared exception and all other checks.
 This policy does not authorize packaging, deployment, publishing or Git setup.
+
+Labelled MP-test preparation uses scripts/prepare_workshop.py --mp-testing and
+separate source/stage/ZIP/VDF integrity checks. Generated bundles live in the
+verified local authoring directory outside the repository and historical dist/.
+This does not bypass or satisfy stable --release/G8, authorize upload, or alter
+the canonical version. Each package binds its exact committed source and hashes.

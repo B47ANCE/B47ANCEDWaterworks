@@ -4,7 +4,7 @@ B47ANCE’d Waterworks is the generic water and fluid-infrastructure provider fo
 ecosystem. Its first foundation extends Build 42 fluid containers with safe,
 authoritative transfer and persistent multi-axis water quality metadata.
 
-- Version: 0.35.0 foundation (not yet a gameplay release).
+- Version: 0.35.1 foundation (not yet a gameplay release).
 - Hard dependencies: none beyond Project Zomboid.
 - Optional integrations: B47ANCE’d Power (`B47ANCEDPower`, with legacy `powerWorks` fallback) and lightWorks.
 
@@ -162,6 +162,13 @@ See [docs/B42_API_RESEARCH_HANDOFF.md](docs/B42_API_RESEARCH_HANDOFF.md) for the
 
 Assets are staged under Contents/mods/B47ANCEDWaterworks/: Steam and in-game thumbnail.png at
 the mod root, referenced by poster=thumbnail.png, with icon.png under 42/.
+Version 0.35.1 uses the user-supplied 1254x1254 Waterworks artwork in both
+[preview.png](preview.png) and the mod thumbnail, copied without alteration.
+The existing icon remains unchanged. Previous artwork is retained under
+assets/artwork/history/; [artwork provenance](docs/artwork-provenance.json)
+binds current hashes and historical locations. In-game display and Workshop
+upload are NOT TESTED; this source update does not publish the artwork.
+
 
 ## Project identity and compatibility
 
@@ -191,3 +198,12 @@ API and retain the legacy `powerWorks` fallback. Waterworks never rewrites
 Power-owned battery or recovery records. See [the integration contract and
 validation](docs/POWER_INTEGRATION.md). The 0.35.0 offline suite passes all 54
 cases with the actual Power source; native SP/dedicated behavior remains untested.
+
+## Workshop preparation
+
+`python scripts/prepare_workshop.py --mp-testing --output-root <local-Workshop/_steamcmd>`
+creates a new package, stage, manifest and VDF for existing item 3788594390 from
+clean committed source. It never signs in, uploads, deploys or restarts Steam.
+Use the verified local authoring folder, outside the source repository. See
+[preparation and distribution gates](docs/WORKSHOP_PUBLISHING.md). Stable-release
+G8 remains blocked; preparation is only for a labelled MP testing build.

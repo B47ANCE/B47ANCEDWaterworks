@@ -1,6 +1,6 @@
 """Validate active identity, compatibility surfaces and protected historical bytes offline."""
 from pathlib import Path
-import hashlib,json,re,subprocess,sys
+import hashlib,json,re,struct,subprocess,sys,zlib
 from check_versions import check
 
 root=Path(__file__).resolve().parents[1]
@@ -68,12 +68,43 @@ for p in [mod/'42/mod.info',root/'WORKSHOP_DESCRIPTION.txt',root/'workshop.txt']
     assert not re.search(r'(?m)^(?:name|id|title)=waterWorks$|(?:Mod ID: waterWorks$)',p.read_text(encoding='utf-8')), 'stale activation identity'
 proof=json.loads((root/'docs/rename-0.34.0-provenance.json').read_text(encoding='utf-8'))
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+art=json.loads((root/'docs/artwork-provenance.json').read_text(encoding='utf-8'))
+art_paths={'preview.png',inv['source_root']+'/thumbnail.png'}
+assert art['schema']==1 and set(art['current_files'])==art_paths
+relocations=art['historical_relocations']
+assert set(relocations)==art_paths, 'only explicitly replaced artwork may relocate history'
+for path in relocations.values():
+    relative=Path(path)
+    assert not relative.is_absolute() and '..'not in relative.parts and path.startswith('assets/artwork/history/'), 'unsafe artwork history path'
+def png_dimensions(path):
+    data=path.read_bytes();assert data[:8]==b'\x89PNG\r\n\x1a\n', 'invalid PNG signature'
+    offset=8;dimensions=None;has_data=False;finished=False
+    while offset<len(data):
+        assert offset+12<=len(data), 'truncated PNG chunk'
+        length=struct.unpack('>I',data[offset:offset+4])[0];end=offset+12+length
+        assert end<=len(data), 'truncated PNG payload'
+        kind=data[offset+4:offset+8];payload=data[offset+8:end-4]
+        assert zlib.crc32(kind+payload)&0xffffffff==struct.unpack('>I',data[end-4:end])[0], 'PNG CRC mismatch'
+        if dimensions is None:
+            assert kind==b'IHDR'and length==13, 'PNG must start with IHDR'
+            dimensions=list(struct.unpack('>II',payload[:8]));assert min(dimensions)>0
+        if kind==b'IDAT':has_data=True
+        offset=end
+        if kind==b'IEND':
+            assert length==0 and offset==len(data), 'invalid PNG end/trailing data'
+            finished=True;break
+    assert finished and has_data, 'incomplete PNG'
+    return dimensions
+for path in art_paths:
+    assert sha(root/path)==art['source']['sha256'], 'current artwork bytes differ from supplied source'
+    assert png_dimensions(root/path)==art['source']['dimensions'], 'current artwork dimensions differ'
+print('PASS current artwork exact bytes, PNG structure/CRCs and dimensions; prior artwork retained')
 checked_protected=0
 for path,digest in proof['protected_files'].items():
     if not (root/path).exists() and path in inv['local_only_historical']:
         print('LOCAL HISTORY NOT PRESENT (excluded from Git): '+path)
         continue
-    assert sha(root/path)==digest, 'protected bytes changed: '+path
+    assert sha(root/relocations.get(path,path))==digest, 'protected historical bytes changed: '+path
     checked_protected+=1
 dist={p.relative_to(root).as_posix():sha(p)for p in (root/'dist').rglob('*')if p.is_file()}
 combined=hashlib.sha256(''.join(k+'\0'+v+'\n'for k,v in sorted(dist.items())).encode()).hexdigest()
@@ -86,5 +117,5 @@ notes=(root/'WORKSHOP_CHANGE_NOTE.txt').read_bytes()
 assert hashlib.sha256(notes[-proof['previous_changenote_bytes']:]).hexdigest()==proof['previous_changenote_sha256'], 'previous changenote changed'
 for p in [root/'README.md',mod/'42/mod.info',root/'workshop.txt',root/'version-inventory.json']:
     text=p.read_text(encoding='utf-8');assert '\ufffd' not in text and 'B47ANCE\u00c3' not in text, 'branding encoding corruption'
-print(f'PASS identity, translations, Lua-only layout, imports/case and Workshop paragraphs; {len(dist)} historical files and {checked_protected} present protected files unchanged')
+print(f'PASS identity, translations, Lua-only layout, imports/case and Workshop paragraphs; {len(dist)} historical files and {checked_protected} protected history records verified')
 subprocess.run([sys.executable,str(root/'scripts/run_lua_tests.py'),'--root',str(root)],check=True)
