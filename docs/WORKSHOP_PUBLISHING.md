@@ -26,7 +26,9 @@ It preserves prior artifacts and never deletes/moves source or staging. ZIP file
 are deterministic, with sorted members and fixed timestamps. The package contains
 the native Contents/mods layout, authoring preview/metadata, canonical VERSION and
 selected change note. SteamCMD's contentfolder points only to staged Contents;
-source/docs, local configuration and tooling are not runtime payload.
+source/docs, local configuration and tooling are not runtime payload. The one
+tracked empty-directory shared/.keep marker (empty or one line break) is explicitly excluded and its
+hash recorded in the manifest; all other hidden/unexpected runtime paths fail.
 
 Preparation verifies clean source/upstream SHA and default-branch ancestry,
 canonical versions/IDs, Lua-only runtime extensions, path/case safety, exact

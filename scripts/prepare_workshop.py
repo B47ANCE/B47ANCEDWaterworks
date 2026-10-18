@@ -82,12 +82,17 @@ def prepare(args):
     assert not output.exists(), "Existing output is preserved; inspect it rather than overwriting"
     # Inventory every native payload path before creating any output.
     inputs = []
+    excluded = {}
     seen = set()
     for file in sorted(source.rglob("*")):
         assert not file.is_symlink() and not getattr(file, "is_junction", lambda: False)(), "Linked payload prohibited"
         if not file.is_file():
             continue
         rel = file.relative_to(ROOT).as_posix()
+        if rel == inv["source_root"] + "/42/media/lua/shared/.keep":
+            assert file.read_bytes() in (b"", b"\n", b"\r\n"), "Only the declared empty directory marker is excluded"
+            excluded[rel] = sha(file)
+            continue
         parts = PurePosixPath(rel).parts
         assert not any(part.startswith(".") or ":" in part for part in parts)
         assert file.suffix.lower() in {".lua", ".txt", ".json", ".png", ".info"}, "Unexpected runtime payload"
@@ -138,7 +143,7 @@ def prepare(args):
                     target_game=dict(minimum=info["versionMin"], installed_steam_build=steam_build, full_installed_version="UNKNOWN"),
                     package=package.name, package_sha256=sha(package), vdf=vdf.name, vdf_sha256=sha(vdf),
                     stage="stage", source_tree_hash_algorithm="SHA256(sorted(relative path + NUL + hex file SHA256 + LF))",
-                    source_tree_sha256=tree_hash(source_hashes), files=source_hashes,
+                    source_tree_sha256=tree_hash(source_hashes), files=source_hashes, excluded_directory_markers=excluded,
                     validation=dict(source_validation="PASS - offline; standalone Lua suite", stage_zip_inventory_crc_hashes="PASS",
                                     power_integration="Separate prerequisite; see current task/PR evidence", sp="NOT TESTED", dedicated="NOT TESTED", G7="BLOCKED / NOT TESTED", stable_G8="BLOCKED"),
                     preview="Original user PNG; native rendering and uploader acceptance NOT TESTED", remote_visibility="PRESERVED - VDF omits visibility")
