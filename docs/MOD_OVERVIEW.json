@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "water",
   "name": "Waterworks",
-  "version": "0.35.0",
+  "version": "0.35.1",
   "reviewed": true,
-  "source_digest": "46a234f9437972da82bdc9a1f4574e0af676ccbab2eb7485c39c048be68d21ef",
+  "source_digest": "f62c44eaae89565d9e2d36a9667312bb94535c5ee303219bbd82fbd9088403c1",
   "features": [
     {
       "status": "Source",

@@ -4,7 +4,7 @@ B47ANCE’d Waterworks is the generic water and fluid-infrastructure provider fo
 ecosystem. Its first foundation extends Build 42 fluid containers with safe,
 authoritative transfer and persistent multi-axis water quality metadata.
 
-- Version: 0.35.0 foundation (not yet a gameplay release).
+- Version: 0.35.1 foundation (not yet a gameplay release).
 - Hard dependencies: none beyond Project Zomboid.
 - Optional integrations: B47ANCE’d Power (`B47ANCEDPower`, with legacy `powerWorks` fallback) and lightWorks.
 
@@ -162,6 +162,13 @@ See [docs/B42_API_RESEARCH_HANDOFF.md](docs/B42_API_RESEARCH_HANDOFF.md) for the
 
 Assets are staged under Contents/mods/B47ANCEDWaterworks/: Steam and in-game thumbnail.png at
 the mod root, referenced by poster=thumbnail.png, with icon.png under 42/.
+Version 0.35.1 uses the user-supplied 1254x1254 Waterworks artwork in both
+[preview.png](preview.png) and the mod thumbnail, copied without alteration.
+The existing icon remains unchanged. Previous artwork is retained under
+assets/artwork/history/; [artwork provenance](docs/artwork-provenance.json)
+binds current hashes and historical locations. In-game display and Workshop
+upload are NOT TESTED; this source update does not publish the artwork.
+
 
 ## Project identity and compatibility
 

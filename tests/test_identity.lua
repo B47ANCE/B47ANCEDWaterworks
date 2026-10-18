@@ -4,7 +4,7 @@ local branded=require "B47ANCEDWaterworks/API"
 local legacy=require "waterWorks/API"
 assert(branded==legacy and _G.B47ANCEDWaterworks==legacy and _G.waterWorks==legacy)
 assert(branded.MOD_ID=="B47ANCEDWaterworks" and branded.DISPLAY_NAME=="B47ANCE’d Waterworks")
-assert(branded.VERSION=="0.35.0")
+assert(branded.VERSION=="0.35.1")
 assert(branded.QUALITY_KEY=="waterWorksQuality" and branded.DRAIN_RECOVERY_KEY=="waterWorksDrainRecovery")
 local registry=require "waterWorks/Registry"
 assert(registry.STORE_KEY=="waterWorks.NetworkRegistry.v1")

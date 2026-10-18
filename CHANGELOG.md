@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.35.1 - 2026-10-17
+
+- Replace the Workshop authoring preview and in-game thumbnail/poster with the
+  user-supplied Waterworks artwork, preserving exact 1254x1254 PNG bytes.
+- Preserve prior artwork under assets/artwork/history/ and keep its original
+  rename-provenance hashes verified. Keep the existing icon and gameplay intact.
+- Record current artwork hashes/dimensions and synchronize version mirrors and
+  overview bindings. Prior 0.35.0 validation is retained as historical evidence.
+- Offline validation only; native thumbnail presentation and dedicated gameplay
+  remain NOT TESTED. No package, deployment or Workshop upload is included.
+
 ## 0.35.0 - 2026-10-17
 
 - Add a craftable sediment filter housing and consumable sand/cloth cartridges.

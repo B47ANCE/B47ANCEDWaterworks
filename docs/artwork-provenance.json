@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "version": "0.35.1",
+  "source": {
+    "kind": "user_supplied",
+    "received": "2026-10-17",
+    "description": "User supplied Waterworks barrel, faucet and wrench branding image for the thumbnail update.",
+    "rights": "User supplied for this project; independent authorship/license not verified.",
+    "sha256": "1ac1ce5b27c2718b6a8d2137e5d5b1708a27e56199bcb908e0d5e6888ec6f50e",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "transform": "None. Original PNG bytes copied exactly."
+  },
+  "current_files": [
+    "preview.png",
+    "Contents/mods/B47ANCEDWaterworks/thumbnail.png"
+  ],
+  "historical_relocations": {
+    "preview.png": "assets/artwork/history/thumbnail-through-0.35.0.png",
+    "Contents/mods/B47ANCEDWaterworks/thumbnail.png": "assets/artwork/history/thumbnail-through-0.35.0.png"
+  },
+  "icon": "Contents/mods/B47ANCEDWaterworks/42/icon.png",
+  "scope": "Workshop authoring preview and existing in-game poster reference; no icon, gameplay, item texture, package or published Workshop changes."
+}
