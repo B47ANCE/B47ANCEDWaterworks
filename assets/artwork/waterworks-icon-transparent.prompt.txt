@@ -1,0 +1,7 @@
+Tool: built-in image_gen
+Source: Waterworks project thumbnail supplied by user
+Output: waterworks-icon-transparent.png
+SHA-256: fbc91c809076263f0e9a6e617426246e6730cd249a952b1eee58e41371fa30c5
+
+Final prompt:
+Use case: background-extraction. Edit target: the supplied Waterworks thumbnail. Create one square transparent PNG icon containing only the existing subject group: the open wooden water barrel with blue water, dark metal bands, attached pipe and brass faucet with red valve wheel and water droplet, and the red pipe wrench lying in front. Preserve their recognizable original pixel-art style, colors, materials, proportions, perspective, and arrangement. Remove ALL lettering, all dark background fill, background texture, ground plane, and ground/drop shadows outside the objects. No text, logo, badge, outline border, invented extra objects, vignette, solid fill, or checkerboard baked into the image. Use genuine alpha transparency outside the subject, including gaps between the wrench and barrel and around the faucet. Keep the complete subject uncropped. Center the cutout group prominently in the square canvas with a small transparent safety margin suitable for a mod icon. Retain crisp pixel-art edges and internal shading; no dark background halo.

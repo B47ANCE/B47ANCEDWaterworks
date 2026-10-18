@@ -1,7 +1,8 @@
 # Sediment filter housing
 
-Current version: 0.35.1. Housing introduced in 0.35.0 (additive MINOR from 0.34.1).
-The 0.35.1 patch changes thumbnail artwork and version metadata only.
+Current version: 0.35.2. Housing introduced in 0.35.0 (additive MINOR from 0.34.1).
+The 0.35.1 patch changed thumbnail artwork; 0.35.2 installs the approved icon
+without changing the thumbnail or gameplay.
 
 [VERIFIED, source] Runtime is Lua-only. This is an explicit whole-container batch
 filter, not automatic inline flow. Existing APIs, Mod ID, Workshop ID, registry
